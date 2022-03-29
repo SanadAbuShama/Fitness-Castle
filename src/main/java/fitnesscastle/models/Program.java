@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "projects")
+@Table(name = "programs")
 public class Program {
 
 	@Id
