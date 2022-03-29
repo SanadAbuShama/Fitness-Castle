@@ -23,23 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	 @Override
-	    protected void configure(HttpSecurity http) throws Exception {
-	        http.
-	            authorizeRequests()
-	                .antMatchers("/static/**", "/registration").permitAll()
-	                .antMatchers("/admin/**").access("hasRole('ADMIN')")    // NEW
-	                .anyRequest().authenticated()
-	                .and()
-	            .formLogin()
-	                .loginPage("/login")
-	                .permitAll()
-	                .and()
-	            .logout()
-	                .permitAll();
-	    }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers( "/static/**", "/registration", "/webjars/**").permitAll()
+				.antMatchers("/admin/**").access("hasRole('ADMIN')") // NEW
+				.anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
+				.permitAll();
+	}
 
-	//@Autowired
+	// @Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}

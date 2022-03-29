@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -53,6 +55,13 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles;
+
+	@OneToMany(mappedBy = "creator", fetch = FetchType.LAZY)
+	private List<Program> programs;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "program_id")
+	private Program subscribedProgram;
 
 	public User() {
 	}
@@ -111,6 +120,24 @@ public class User {
 
 	public void setConfirm(String confirm) {
 		this.confirm = confirm;
+	}
+
+	
+	
+	public List<Program> getPrograms() {
+		return programs;
+	}
+
+	public void setPrograms(List<Program> programs) {
+		this.programs = programs;
+	}
+
+	public Program getSubscribedProgram() {
+		return subscribedProgram;
+	}
+
+	public void setSubscribedProgram(Program subscribedProgram) {
+		this.subscribedProgram = subscribedProgram;
 	}
 
 	public Date getCreatedAt() {

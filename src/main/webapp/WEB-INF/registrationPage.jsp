@@ -5,38 +5,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Registration Page</title>
 </head>
 <body>
 	<h1>Register!</h1>
-
-	<p>
-		<form:errors path="user.*" />
-	</p>
-
 	<form:form method="POST" action="/registration" modelAttribute="user">
 		<p>
+			<form:errors path="firstName" />
 			<form:label path="firstName">First Name:</form:label>
 			<form:input path="firstName" />
 		</p>
 		<p>
+			<form:errors path="lastName" />
 			<form:label path="lastName">Last Name:</form:label>
 			<form:input path="lastName" />
 		</p>
 		<p>
+			<form:errors path="email" />
 			<form:label path="email">Email:</form:label>
 			<form:input path="email" />
 		</p>
 		<p>
+			<form:errors path="password" />
 			<form:label path="password">Password:</form:label>
 			<form:password path="password" />
 		</p>
 		<p>
+			<form:errors path="confirm" />
 			<form:label path="confirm">Password Confirmation:</form:label>
 			<form:password path="confirm" />
 		</p>
 		<input type="submit" value="Register!" />
 	</form:form>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
