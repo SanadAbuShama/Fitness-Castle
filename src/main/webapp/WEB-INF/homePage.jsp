@@ -12,7 +12,7 @@
 	<h1>
 		Welcome Page
 		<c:out value="${currentUser.firstName}"></c:out>
-	</h1>
+	</h1> 
 
 	<form id="logoutForm" method="POST" action="/logout">
 		<input type="hidden" name="${_csrf.parameterName}"

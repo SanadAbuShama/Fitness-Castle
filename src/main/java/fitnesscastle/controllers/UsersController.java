@@ -81,4 +81,11 @@ public class UsersController {
 		model.addAttribute("currentUser", userService.findByEmail(email));
 		return "homePage.jsp";
 	}
+	
+	@GetMapping("/info")
+	public String index(Model model) {
+
+		return "info.jsp";
+
+	}
 }

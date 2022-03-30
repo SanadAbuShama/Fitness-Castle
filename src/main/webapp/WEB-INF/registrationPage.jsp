@@ -1,49 +1,90 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>	
+<!DOCTYPE html>
 <html>
-<head>
+<head> 
+<link rel="stylesheet" type="text/css" href="/css/registration.css">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registration Page</title>
-</head>
+<meta charset="ISO-8859-1">
+<title>Programs</title>
+</head> 
 <body>
-	<h1>Register!</h1>
-	<form:form method="POST" action="/registration" modelAttribute="user">
-		<p>
-			<form:errors path="firstName" />
-			<form:label path="firstName">First Name:</form:label>
-			<form:input path="firstName" />
-		</p>
-		<p>
-			<form:errors path="lastName" />
-			<form:label path="lastName">Last Name:</form:label>
-			<form:input path="lastName" />
-		</p>
-		<p>
-			<form:errors path="sex" />
-			<form:label path="sex">Last Name:</form:label>
-			<form:input path="sex" />
-		</p>
-		<p>
-			<form:errors path="email" />
-			<form:label path="email">Email:</form:label>
-			<form:input path="email" />
-		</p>
-		<p>
-			<form:errors path="password" />
-			<form:label path="password">Password:</form:label>
-			<form:password path="password" />
-		</p>
-		<p>
-			<form:errors path="confirm" />
-			<form:label path="confirm">Password Confirmation:</form:label>
-			<form:password path="confirm" />
-		</p>
-		<input type="submit" value="Register!" />
-	</form:form>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"> <img class="logo"
+				src="/images/logo.png" alt="" width="50" height="35" />
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Features</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
+					</li>
+					<li class="nav-item"><a class="nav-link disabled">Disabled</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+    <div class="container-md-fluid  border-primary m-5 p-4 ">
+        <h1  class="text-center">Welcome To Fitness Castle</h1>
+        <div class="row justify-content-evenly">
+            <div class="col-4" id="rig">
+                <form:form class="row g-3 " method="post" action="/registration" modelAttribute="user">
+                    <h2>Registration</h2>   
+                    <div class="form-floating ">
+                        <form:errors class="text-light" path="firstName" />
+                        <form:input type="text" class="form-control" id="floatingInput" placeholder="e.g. 10"
+                            path="firstName" />
+                        <label for="floatingInput">First Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <form:errors path="lastName" class="text-light" />
+                        <form:input type="text" class="form-control" id="floatingInput" placeholder="e.g. 10"
+                            path="lastName"/>
+                        <label for="floatingInput">Last Name</label>
+                    </div>
+                    <div class="form-floating">
+	                    <form:errors class="text-light" path="email" />
+                        <form:input type="email" class="form-control" id="floatingInput" placeholder="e.g. 10" path="email"/>
+                        <label  for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating">
+                        <select class="form-select " aria-label="Default select example">
+                            <option selected>Gender</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                          </select>
+                    </div>
+                    <div class="form-floating">
+                    	<form:errors class="text-light" path="password" />
+                        <form:input type="password" class="form-control" id="floatingInput" placeholder="e.g. 10"
+                            path="password"/>
+                        <label for="floatingInput">Password</label>
+                    </div>
+                    <div class="form-floating">
+                    	<form:errors class="text-light" path="confirm" />
+                        <form:input type="password" class="form-control" id="floatingInput" placeholder="e.g. 10"
+                            path="confirm"/>
+                        <label for="floatingInput">Confirm Password</label>
+                    </div>
+                    <div class="d-grid gap-2 col-3 mx-auto">
+                        <button class="btn btn-outline-light" type="submit">Register</button>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
