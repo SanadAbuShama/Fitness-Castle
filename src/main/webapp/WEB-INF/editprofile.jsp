@@ -6,35 +6,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-    crossorigin="anonymous" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous" />
 <style>
-                        .logo {
-                        width: 130px;
-                        height: 100px;
-                        margin-top: -40px;
-                        margin-bottom: -20px;
-                    }
+.logo {
+	width: 130px;
+	height: 100px;
+	margin-top: -40px;
+	margin-bottom: -20px;
+}
 
+.background {
+	background-image: url("/images/gym1.jpg"), url("/images/gym2.avif"),
+		url("/images/gym3.avif");
+	background-repeat: no-repeat repeat-x repeat-y;
+	background-position: 10px 20px, 20px 30px, 15px 25px;
+}
 
-                    .background {
-                        background-image: url("/images/gym1.jpg"), url("/images/gym2.avif"), url("/images/gym3.avif");
-                        background-repeat: no-repeat repeat-x repeat-y;
-                        background-position: 10px 20px, 20px 30px, 15px 25px;
+.blur {
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(5px);
+	width: 100%;
+}
 
-                    }
-
-
-                    .blur {
-                        background: rgba(255, 255, 255, 0.2);
-                        backdrop-filter: blur(5px);
-                        width: 100%;
-                    }
-    
 .form-control, .form-select {
 	background-color: rgba(255, 255, 255, 0.7) !important;
 }
@@ -56,10 +56,10 @@
 }
 </style>
 
-    <title>Document</title>
+<title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"> <img class="logo"
 				src="/images/logo.png" alt="" width="50" height="35" />
@@ -98,20 +98,20 @@
 				</div>
 				<div class="row">
 					<div class="col text-start">
-			<form:form action="/users/${user.id}/edit" method="post" modelAttribute="user">
-					
-			<input type="hidden" name="_method" value="put">
-				<div class="form-floating my-3">
-				  <form:input path="title" class="form-control" name = "first_name" id="floatingInput" placeholder="name@example.com"/>
-				  <form:label path="title" for="floatingInput">First Name</form:label>
-					<form:errors path="title" class = "my-3" style="color: red;"/>
-				</div>
+						<form:form action="/users/${user.id}/edit" method="post"
+							modelAttribute="user">
+							<input type="hidden" name="_method" value="put">
+							<div class="form-floating my-3">
+								<form:input path="title" class="form-control" name="first_name"
+									id="floatingInput" placeholder="name@example.com" />
+								<form:label path="title" for="floatingInput">First Name</form:label>
+								<form:errors path="title" class="my-3" style="color: red;" />
+							</div>
 							<button type="submit" class="btn btn-dark float-end ms-2">Submit</button>
 							<a href="/profile" class="btn btn-danger float-end">Cancel</a>
-													</form:form>
-							
-					</div>
+						</form:form>
 
+					</div>
 				</div>
 			</div>
 		</div>

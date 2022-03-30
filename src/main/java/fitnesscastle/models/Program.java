@@ -65,6 +65,8 @@ public class Program {
 	@Size(min = 10, message = "Day 7 details must be at least 10 characters!")
 	private String day7;
 
+	private String image;
+
 	@NotEmpty(message = "Category is required!")
 	private String category;
 
@@ -186,6 +188,14 @@ public class Program {
 
 	public void setSubscribers(List<User> subscribers) {
 		this.subscribers = subscribers;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public Date getCreatedAt() {

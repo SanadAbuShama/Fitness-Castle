@@ -63,12 +63,118 @@
 										href="${loggedUser.email}"><c:out
 												value="${loggedUser.email}" /></a></li>
 									<li class="list-group-item bg-dark text-light"><c:out
-											value="${loggedUser.subscribedProgram}" /></li>
+											value="${loggedUser.subscribedProgram.name}" /></li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+
+				<table class="table align-middle mb-0 bg-secondary text-light">
+					<thead class="bg-light text-dark">
+						<tr>
+							<th>Day</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<p class="fw-bold mb-1">Saturday</p>
+								</div>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">
+									<c:out value="${loggedUser.subscribedProgram.day1}" />
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<p class="fw-bold mb-1">Sunday</p>
+								</div>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">
+									<c:out value="${loggedUser.subscribedProgram.day2}" />
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<p class="fw-bold mb-1">Monday</p>
+								</div>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">
+									<c:out value="${loggedUser.subscribedProgram.day3}" />
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<p class="fw-bold mb-1">Tuesday</p>
+								</div>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">
+									<c:out value="${loggedUser.subscribedProgram.day4}" />
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<p class="fw-bold mb-1">Wednesday</p>
+								</div>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">
+									<c:out value="${loggedUser.subscribedProgram.day5}" />
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<p class="fw-bold mb-1">Thursday</p>
+								</div>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">
+									<c:out value="${loggedUser.subscribedProgram.day6}" />
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									<p class="fw-bold mb-1">Friday</p>
+								</div>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">
+									<c:out value="${loggedUser.subscribedProgram.day7}" />
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

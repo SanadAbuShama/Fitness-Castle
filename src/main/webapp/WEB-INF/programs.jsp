@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,76 +44,25 @@
 	</nav>
 	<div class="container">
 		<div class="row my-5 row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-			<div class="col">
-				<div class="card h-100 bg-dark text-light">
-					<img src="/images/placeholder.jpg" class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Cardio Program</h5>
-						<p class="card-text">Lorem ipsum, dolor sit amet consectetur
-							adipisicing elit. Corrupti quisquam hic, in voluptas praesentium
-							ducimus quam</p>
-						<p class="card-text">
-							<a href="#" class="btn btn-outline-light">View Details</a>
-						</p>
+			<c:forEach var="program" items="${programs}">
+				<div class="col">
+					<div class="card h-100 bg-dark text-light">
+						<img src="${program.image}" class="card-img-top" alt="..." />
+						<div class="card-body">
+							<h5 class="card-title">
+								<c:out value="${program.name}" />
+							</h5>
+							<p class="card-text">
+								<c:out value="${program.description}" />
+							</p>
+							<p class="card-text">
+								<a href="/programs/${program.id}/schedule" class="btn btn-outline-light">View
+									Details</a>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100 bg-dark text-light">
-					<img src="/images/placeholder.jpg" class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Cardio Program</h5>
-						<p class="card-text">Lorem ipsum, dolor sit amet consectetur
-							adipisicing elit. Corrupti quisquam hic, in voluptas praesentium
-							ducimus quam</p>
-						<p class="card-text">
-							<a href="#" class="btn btn-outline-light">View Details</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100 bg-dark text-light">
-					<img src="/images/placeholder.jpg" class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Cardio Program</h5>
-						<p class="card-text">Lorem ipsum, dolor sit amet consectetur
-							adipisicing elit. Corrupti quisquam hic, in voluptas praesentium
-							ducimus quam</p>
-						<p class="card-text">
-							<a href="#" class="btn btn-outline-light">View Details</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100 bg-dark text-light">
-					<img src="/images/placeholder.jpg" class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Cardio Program</h5>
-						<p class="card-text">Lorem ipsum, dolor sit amet consectetur
-							adipisicing elit. Corrupti quisquam hic, in voluptas praesentium
-							ducimus quam</p>
-						<p class="card-text">
-							<a href="#" class="btn btn-outline-light">View Details</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100 bg-dark text-light">
-					<img src="/images/placeholder.jpg" class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">Cardio Program</h5>
-						<p class="card-text">Lorem ipsum, dolor sit amet consectetur
-							adipisicing elit. Corrupti quisquam hic, in voluptas praesentium
-							ducimus quam</p>
-						<p class="card-text">
-							<a href="#" class="btn btn-outline-light">View Details</a>
-						</p>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 	<script src="/webjars/jquery/jquery.min.js"></script>

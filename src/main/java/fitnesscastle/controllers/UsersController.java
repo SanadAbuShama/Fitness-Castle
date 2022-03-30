@@ -43,7 +43,7 @@ public class UsersController {
 		if (result.hasErrors()) {
 			return "registrationPage.jsp";
 		}
-		userService.saveWithUserRole(user);
+		userService.saveUserWithAdminRole(user);
 		return "redirect:/home";
 	}
 
