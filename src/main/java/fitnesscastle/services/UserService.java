@@ -1,5 +1,7 @@
 package fitnesscastle.services;
 
+import java.util.Optional;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +39,14 @@ public class UserService {
 	// 3
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+
+	public User findUserById(Long id) {
+		Optional<User> u = userRepository.findById(id);
+		if (u.isPresent()) {
+			return u.get();
+		} else {
+			return null;
+		}
 	}
 }

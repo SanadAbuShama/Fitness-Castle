@@ -1,12 +1,11 @@
 package fitnesscastle.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,22 +39,17 @@ public class ProgramController {
 
 	@PostMapping("/admin/programs")
 	public String createProgram(@Valid @ModelAttribute("newProgram") Program newProgram, BindingResult result,
-			Model model, HttpSession session) {
+			Model model, Principal principal) {
 
 		if (result.hasErrors()) {
 
 			return "newProgram.jsp";
 		} else {
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			if (!(authentication instanceof AnonymousAuthenticationToken)) {
-				String email = authentication.getName();
-				programServ.createProgram(email, newProgram);
-			} else {
-				return "redirect:/login";
-			}
-
+			String email = principal.getName();
+			programServ.createProgram(email, newProgram);
+			return "redirect:/progams";
 		}
-		return "redirec:/programs";
+
 	}
 
 }

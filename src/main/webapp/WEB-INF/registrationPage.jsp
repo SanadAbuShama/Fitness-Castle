@@ -23,6 +23,11 @@
 			<form:input path="lastName" />
 		</p>
 		<p>
+			<form:errors path="sex" />
+			<form:label path="sex">Last Name:</form:label>
+			<form:input path="sex" />
+		</p>
+		<p>
 			<form:errors path="email" />
 			<form:label path="email">Email:</form:label>
 			<form:input path="email" />
