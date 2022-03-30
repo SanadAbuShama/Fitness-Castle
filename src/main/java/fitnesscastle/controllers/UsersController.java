@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,11 +66,26 @@ public class UsersController {
 		return "loginPage.jsp";
 	}
 
+	@RequestMapping("/users/{id}")
+	public String login(@PathVariable("id") Long id, Model model) {
+
+		User loggedUser = userService.findUserById(id);
+		model.addAttribute("loggedUser", loggedUser);
+		return "profilePage.jsp";
+	}
+
 	@RequestMapping(value = { "/", "/home" })
 	public String home(Principal principal, Model model) {
 		// 1
 		String email = principal.getName();
 		model.addAttribute("currentUser", userService.findByEmail(email));
 		return "homePage.jsp";
+	}
+	
+	@GetMapping("/info")
+	public String index(Model model) {
+
+		return "info.jsp";
+
 	}
 }

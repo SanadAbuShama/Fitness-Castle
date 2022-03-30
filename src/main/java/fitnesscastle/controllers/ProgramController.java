@@ -1,12 +1,11 @@
 package fitnesscastle.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +28,10 @@ public class ProgramController {
 	@Autowired
 	private ProgramService programServ;
 
+	@Autowired
+	private UserService userServ;
+
+
 	@GetMapping("/programs")
 	public String index(Model model) {
 
@@ -37,7 +40,7 @@ public class ProgramController {
 	}
 	@GetMapping("/books/{userId}/edit")
 	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
-			User thisuser = UserService.findById(id);
+			User thisuser = userServ.findUserById(id);
 			model.addAttribute("user", thisuser);
 			return "editprofile.jsp";
 		}
@@ -54,22 +57,17 @@ public class ProgramController {
 
 	@PostMapping("/admin/programs")
 	public String createProgram(@Valid @ModelAttribute("newProgram") Program newProgram, BindingResult result,
-			Model model, HttpSession session) {
+			Model model, Principal principal) {
 
 		if (result.hasErrors()) {
 
 			return "newProgram.jsp";
 		} else {
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			if (!(authentication instanceof AnonymousAuthenticationToken)) {
-				String email = authentication.getName();
-				programServ.createProgram(email, newProgram);
-			} else {
-				return "redirect:/login";
-			}
-
+			String email = principal.getName();
+			programServ.createProgram(email, newProgram);
+			return "redirect:/progams";
 		}
-		return "redirec:/programs";
+
 	}
 
 }

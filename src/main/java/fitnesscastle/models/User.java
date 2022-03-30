@@ -37,6 +37,8 @@ public class User {
 	@Size(min = 3)
 	private String lastName;
 
+	private String sex;
+
 	@Email
 	private String email;
 
@@ -122,8 +124,6 @@ public class User {
 		this.confirm = confirm;
 	}
 
-	
-	
 	public List<Program> getPrograms() {
 		return programs;
 	}
@@ -138,6 +138,14 @@ public class User {
 
 	public void setSubscribedProgram(Program subscribedProgram) {
 		this.subscribedProgram = subscribedProgram;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 	public Date getCreatedAt() {
