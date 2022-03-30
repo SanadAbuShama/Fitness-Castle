@@ -73,9 +73,15 @@
 		</div>
 		<div class="row">
 			<div class="col">
-
-				<table class="table align-middle mb-0 bg-secondary text-light">
-					<thead class="bg-light text-dark">
+				<h4 class="my-3">Here's your program, stay motivated!</h4>
+				<h4 class="my-3">
+					<i> <c:out value="${loggedUser.subscribedProgram.name}" />
+						with <c:out
+							value="${loggedUser.subscribedProgram.creator.firstName}" />
+					</i>
+				</h4>
+				<table class="table rounded-3 mb-0 bg-secondary text-light">
+					<thead class="bg-light text-dark border border-dark">
 						<tr>
 							<th>Day</th>
 							<th>Description</th>

@@ -3,6 +3,7 @@ package fitnesscastle.controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,9 +47,11 @@ public class ProgramController {
 	}
 
 	@GetMapping("/programs/{id}/schedule")
-	public String schedule(@PathVariable("id") Long id, Model model) {
+	public String schedule(@PathVariable("id") Long id, Model model, Principal principal) {
 		Program program = programServ.findProgramById(id);
+		User loggedUser = userServ.findByEmail(principal.getName());
 		model.addAttribute("program", program);
+		model.addAttribute("loggedUser", loggedUser);
 		return "Schedule.jsp";
 
 	}
@@ -70,17 +74,29 @@ public class ProgramController {
 	public String createProgram(@RequestParam("file") MultipartFile file,
 			@Valid @ModelAttribute("newProgram") Program newProgram, BindingResult result, Model model,
 			Principal principal) {
-
 		if (result.hasErrors()) {
-
 			return "newProgram.jsp";
 		} else {
-			String url = cloudinaryService.uploadFile(file);
+			String url = null;
+			if (!file.isEmpty()) {
+				url = cloudinaryService.uploadFile(file);
+			}
 			String email = principal.getName();
 			programServ.createProgram(email, newProgram, url);
 			return "redirect:/programs";
 		}
 
+	}
+
+	@PutMapping("/programs/{id}/subscribe")
+	public String subscribe(@PathVariable("id") Long id, Principal principal, HttpServletRequest request) {
+		if (request.isUserInRole("ROLE_USER")) {
+			Program program = programServ.findProgramById(id);
+			String email = principal.getName();
+			userServ.subscribeToProgram(email, program);
+
+		}
+		return String.format("redirect:/programs/%d/schedule", id);
 	}
 
 }

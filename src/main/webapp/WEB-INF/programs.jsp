@@ -47,7 +47,17 @@
 			<c:forEach var="program" items="${programs}">
 				<div class="col">
 					<div class="card h-100 bg-dark text-light">
-						<img src="${program.image}" class="card-img-top" alt="..." />
+						<c:choose>
+
+							<c:when test="${program.image == null}">
+								<img src="/images/logo.png" class="card-img-top" alt="..." />
+							</c:when>
+							<c:otherwise>
+
+								<img src="${program.image}" class="card-img-top" alt="..." />
+							</c:otherwise>
+						</c:choose>
+
 						<div class="card-body">
 							<h5 class="card-title">
 								<c:out value="${program.name}" />
@@ -56,8 +66,8 @@
 								<c:out value="${program.description}" />
 							</p>
 							<p class="card-text">
-								<a href="/programs/${program.id}/schedule" class="btn btn-outline-light">View
-									Details</a>
+								<a href="/programs/${program.id}/schedule"
+									class="btn btn-outline-light">View Details</a>
 							</p>
 						</div>
 					</div>

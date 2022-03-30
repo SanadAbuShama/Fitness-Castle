@@ -43,7 +43,7 @@ public class UsersController {
 		if (result.hasErrors()) {
 			return "registrationPage.jsp";
 		}
-		userService.saveUserWithAdminRole(user);
+		userService.saveWithUserRole(user);
 		return "redirect:/home";
 	}
 
@@ -81,7 +81,7 @@ public class UsersController {
 		model.addAttribute("currentUser", userService.findByEmail(email));
 		return "homePage.jsp";
 	}
-	
+
 	@GetMapping("/info")
 	public String index(Model model) {
 

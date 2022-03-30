@@ -78,108 +78,132 @@
 						<a href="/programs" class="btn btn-dark">Back to programs</a>
 					</div>
 				</div>
+				<div class="row">
+					<table class="table align-middle bg-white">
+						<thead class="bg-light">
+							<tr>
+								<th>Day</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<p class="fw-bold mb-1">Saturday</p>
+									</div>
+								</td>
 
-				<table class="table align-middle mb-0 bg-white">
-					<thead class="bg-light">
-						<tr>
-							<th>Day</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<p class="fw-bold mb-1">Saturday</p>
-								</div>
-							</td>
+								<td>
+									<p class="fw-normal mb-1">
+										<c:out value="${program.day1}" />
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<p class="fw-bold mb-1">Sunday</p>
+									</div>
+								</td>
 
-							<td>
-								<p class="fw-normal mb-1">
-									<c:out value="${program.day1}" />
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<p class="fw-bold mb-1">Sunday</p>
-								</div>
-							</td>
+								<td>
+									<p class="fw-normal mb-1">
+										<c:out value="${program.day2}" />
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<p class="fw-bold mb-1">Monday</p>
+									</div>
+								</td>
 
-							<td>
-								<p class="fw-normal mb-1">
-									<c:out value="${program.day2}" />
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<p class="fw-bold mb-1">Monday</p>
-								</div>
-							</td>
+								<td>
+									<p class="fw-normal mb-1">
+										<c:out value="${program.day3}" />
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<p class="fw-bold mb-1">Tuesday</p>
+									</div>
+								</td>
 
-							<td>
-								<p class="fw-normal mb-1">
-									<c:out value="${program.day3}" />
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<p class="fw-bold mb-1">Tuesday</p>
-								</div>
-							</td>
+								<td>
+									<p class="fw-normal mb-1">
+										<c:out value="${program.day4}" />
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<p class="fw-bold mb-1">Wednesday</p>
+									</div>
+								</td>
 
-							<td>
-								<p class="fw-normal mb-1">
-									<c:out value="${program.day4}" />
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<p class="fw-bold mb-1">Wednesday</p>
-								</div>
-							</td>
+								<td>
+									<p class="fw-normal mb-1">
+										<c:out value="${program.day5}" />
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<p class="fw-bold mb-1">Thursday</p>
+									</div>
+								</td>
 
-							<td>
-								<p class="fw-normal mb-1">
-									<c:out value="${program.day5}" />
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<p class="fw-bold mb-1">Thursday</p>
-								</div>
-							</td>
+								<td>
+									<p class="fw-normal mb-1">
+										<c:out value="${program.day6}" />
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<p class="fw-bold mb-1">Friday</p>
+									</div>
+								</td>
 
-							<td>
-								<p class="fw-normal mb-1">
-									<c:out value="${program.day6}" />
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="d-flex align-items-center">
-									<p class="fw-bold mb-1">Friday</p>
-								</div>
-							</td>
+								<td>
+									<p class="fw-normal mb-1">
+										<c:out value="${program.day7}" />
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="row">
+					<c:choose>
+						<c:when test="${program.id == loggedUser.subscribedProgram.id}">
+							<div class="col">
+								<button class="btn btn-secondary float-end" disabled="disabled">
+									Subscribed!</button>
+							</div>
+						</c:when>
+						<c:otherwise>
 
-							<td>
-								<p class="fw-normal mb-1">
-									<c:out value="${program.day7}" />
-								</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+							<div class="col text-end">
+								<form action="/programs/${program.id}/subscribe" method="post">
+									<input type="hidden" name="_method" value="put"> <input
+										type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+									<button class="btn btn-dark float-end">Subscribe</button>
+								</form>
+							</div>
+						</c:otherwise>
+					</c:choose>
+
+				</div>
+
 			</main>
 		</div>
 	</div>
