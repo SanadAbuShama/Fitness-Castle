@@ -64,12 +64,19 @@ public class UsersController {
 		}
 		return "loginPage.jsp";
 	}
-
+	
 	@RequestMapping(value = { "/", "/home" })
 	public String home(Principal principal, Model model) {
 		// 1
 		String email = principal.getName();
 		model.addAttribute("currentUser", userService.findByEmail(email));
 		return "homePage.jsp";
+	}
+	
+	@GetMapping("/info")
+	public String index(Model model) {
+
+		return "info.jsp";
+
 	}
 }
