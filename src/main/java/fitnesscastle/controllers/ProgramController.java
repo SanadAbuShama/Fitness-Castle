@@ -12,10 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import fitnesscastle.models.Program;
+import fitnesscastle.models.User;
 import fitnesscastle.services.ProgramService;
+import fitnesscastle.services.UserService;
 //.. don't forget to inlcude all your imports! ..
 
 @Controller
@@ -30,6 +35,15 @@ public class ProgramController {
 		return "programs.jsp";
 
 	}
+	@GetMapping("/books/{userId}/edit")
+	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
+			User thisuser = UserService.findById(id);
+			model.addAttribute("user", thisuser);
+			return "editprofile.jsp";
+		}
+		
+	
+
 
 	@GetMapping("/admin/programs/new")
 	public String renderNewForm(@ModelAttribute("newProgram") Program newProject, HttpSession session) {
