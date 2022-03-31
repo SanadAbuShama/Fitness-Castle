@@ -49,9 +49,9 @@ public class User {
 	@Transient
 	private String confirm;
 
-	int age;
+	double age;
 
-	int height;
+	double height;
 
 	float weight;
 
@@ -157,16 +157,21 @@ public class User {
 		this.gender = gender;
 	}
 
-	public int getAge() {
+	
+	public double getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(double age) {
 		this.age = age;
 	}
 
-	public int getHeight() {
+	public double getHeight() {
 		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
 	}
 
 	public void setHeight(int height) {

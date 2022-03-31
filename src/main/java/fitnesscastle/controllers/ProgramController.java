@@ -32,7 +32,6 @@ public class ProgramController {
 	@Autowired
 	private ProgramService programServ;
 
-
 	@Autowired
 	private CloudinaryService cloudinaryService;
 	@Autowired
@@ -62,13 +61,6 @@ public class ProgramController {
 		model.addAttribute("loggedUser", loggedUser);
 		return "Exercises.jsp";
 
-	}
-
-	@GetMapping("/users/{userId}/edit")
-	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
-		User thisuser = userServ.findUserById(id);
-		model.addAttribute("user", thisuser);
-		return "editprofile.jsp";
 	}
 
 	@GetMapping("/admin/programs/new")

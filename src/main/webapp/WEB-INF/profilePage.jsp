@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,7 +83,8 @@
 														Age: Not Provided!
 											</c:when>
 											<c:otherwise>Age:
-												<c:out value="${loggedUser.age}" />
+												<fmt:formatNumber type="number" maxFractionDigits="0"
+													value="${loggedUser.age}" />
 											</c:otherwise>
 										</c:choose></li>
 									<li class="list-group-item bg-dark text-light"><c:choose>
@@ -90,7 +92,8 @@
 														Height: Not Provided!
 											</c:when>
 											<c:otherwise>Height:
-												<c:out value="${loggedUser.height}" />
+												<fmt:formatNumber type="number" maxFractionDigits="0"
+													value="${loggedUser.height}" />
 											</c:otherwise>
 										</c:choose></li>
 									<li class="list-group-item bg-dark text-light"><c:choose>
@@ -98,7 +101,17 @@
 														Weight: Not Provided!
 											</c:when>
 											<c:otherwise>Weight:
-												<c:out value="${loggedUser.weight}" />
+												<fmt:formatNumber type="number" maxFractionDigits="0"
+													value="${loggedUser.weight}" />
+											</c:otherwise>
+										</c:choose></li>
+									<li class="list-group-item bg-dark text-light"><c:choose>
+											<c:when test="${loggedUser.bmi == 0}">
+														BMI: Not Calculated!
+											</c:when>
+											<c:otherwise>BMI:
+												<fmt:formatNumber type="number" pattern="##.#"
+													value="${loggedUser.bmi}" />
 											</c:otherwise>
 										</c:choose></li>
 									<li class="list-group-item bg-dark text-light"><a

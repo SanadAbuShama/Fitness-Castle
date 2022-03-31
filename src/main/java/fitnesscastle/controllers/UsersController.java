@@ -79,13 +79,13 @@ public class UsersController {
 	@GetMapping("/info")
 	public String index(Model model, Principal principal) {
 		User loggedUser = userService.findByEmail(principal.getName());
+
 		model.addAttribute("loggedUser", loggedUser);
 		return "info.jsp";
-
 	}
 
 	@PostMapping("/users/add_info")
-	public String addInfo(@RequestParam("age") int age, @RequestParam("height") int height,
+	public String addInfo(@RequestParam("age") Double age, @RequestParam("height") Double height,
 			@RequestParam("weight") Float weight, Principal principal, RedirectAttributes redirectAttributes) {
 
 		if (age < 18 || height < 50 || weight < 30) {
@@ -107,24 +107,20 @@ public class UsersController {
 		User loggedUser = userService.findByEmail(principal.getName());
 		userService.addInfoToUser(loggedUser, age, height, weight);
 		return String.format("redirect:/users/%d", loggedUser.getId());
+	}
+
 	@GetMapping("/users/{userId}/edit")
 	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
-			User thisuser = userService.findUserById(id);
-			model.addAttribute("user", thisuser);
-			return "editprofile..jsp";
-		}
-		
-	@PutMapping("/users/{id}/edit")
-    public String update (@Valid @ModelAttribute("user") User user, BindingResult result,@PathVariable("id") Long id,Model model) {
-		userService.updateuser(user);
-                return "redirect:/exercies";
-            
-        }
+		User thisuser = userService.findUserById(id);
+		model.addAttribute("user", thisuser);
+		return "editprofile.jsp";
+	}
 
-	@GetMapping("/aboutus")
-	public String aboutus(Model model) {
-		
-		return "aboutus.jsp";
+	@PutMapping("/users/{id}/edit")
+	public String update(@Valid @ModelAttribute("user") User user, BindingResult result, @PathVariable("id") Long id,
+			Model model) {
+		userService.updateuser(user);
+		return "redirect:/exercies";
 
 	}
 

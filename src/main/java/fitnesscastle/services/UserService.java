@@ -68,7 +68,7 @@ public class UserService {
 		userRepository.save(loggedUser);
 	}
 
-	public void addInfoToUser(User loggedUser, int age, int height, Float weight) {
+	public void addInfoToUser(User loggedUser, double age, double height, Float weight) {
 		loggedUser.setAge(age);
 		loggedUser.setHeight(height);
 		loggedUser.setWeight(weight);
