@@ -88,4 +88,9 @@ public class UsersController {
 		return "info.jsp";
 
 	}
+	@GetMapping("/aboutus")
+	public String aboutus(Model model) {
+		return "aboutus.jsp";
+
+	}
 }
