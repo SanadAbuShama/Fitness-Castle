@@ -1,7 +1,9 @@
 package fitnesscastle.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,14 +16,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import fitnesscastle.models.Program;
 import fitnesscastle.models.User;
+import fitnesscastle.services.CloudinaryService;
 import fitnesscastle.services.ProgramService;
 import fitnesscastle.services.UserService;
-//.. don't forget to inlcude all your imports! ..
+//.. don't forget to  all your imports! ..
 
 @Controller
 public class ProgramController {
@@ -30,20 +33,35 @@ public class ProgramController {
 	private ProgramService programServ;
 
 
+	@Autowired
+	private CloudinaryService cloudinaryService;
+	@Autowired
+	private UserService userServ;
 
 	@GetMapping("/programs")
 	public String index(Model model) {
-
+		List<Program> programs = programServ.allPrograms();
+		model.addAttribute("programs", programs);
 		return "programs.jsp";
 
 	}
-	@GetMapping("/exercies")
-	public String hasssan(Model model) {
 
-		return "Exercies.jsp";
+	@GetMapping("/programs/{id}/schedule")
+	public String schedule(@PathVariable("id") Long id, Model model, Principal principal) {
+		Program program = programServ.findProgramById(id);
+		User loggedUser = userServ.findByEmail(principal.getName());
+		model.addAttribute("program", program);
+		model.addAttribute("loggedUser", loggedUser);
+		return "Schedule.jsp";
 
 	}
 
+	@GetMapping("/users/{userId}/edit")
+	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
+		User thisuser = userServ.findUserById(id);
+		model.addAttribute("user", thisuser);
+		return "editprofile.jsp";
+	}
 
 	@GetMapping("/admin/programs/new")
 	public String renderNewForm(@ModelAttribute("newProgram") Program newProject, HttpSession session) {
@@ -53,18 +71,32 @@ public class ProgramController {
 	}
 
 	@PostMapping("/admin/programs")
-	public String createProgram(@Valid @ModelAttribute("newProgram") Program newProgram, BindingResult result,
-			Model model, Principal principal) {
-
+	public String createProgram(@RequestParam("file") MultipartFile file,
+			@Valid @ModelAttribute("newProgram") Program newProgram, BindingResult result, Model model,
+			Principal principal) {
 		if (result.hasErrors()) {
-
 			return "newProgram.jsp";
 		} else {
+			String url = null;
+			if (!file.isEmpty()) {
+				url = cloudinaryService.uploadFile(file);
+			}
 			String email = principal.getName();
-			programServ.createProgram(email, newProgram);
-			return "redirect:/progams";
+			programServ.createProgram(email, newProgram, url);
+			return "redirect:/programs";
 		}
 
+	}
+
+	@PutMapping("/programs/{id}/subscribe")
+	public String subscribe(@PathVariable("id") Long id, Principal principal, HttpServletRequest request) {
+		if (request.isUserInRole("ROLE_USER")) {
+			Program program = programServ.findProgramById(id);
+			String email = principal.getName();
+			userServ.subscribeToProgram(email, program);
+
+		}
+		return String.format("redirect:/programs/%d/schedule", id);
 	}
 
 }

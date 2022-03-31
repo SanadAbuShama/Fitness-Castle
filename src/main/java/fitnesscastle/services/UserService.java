@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import fitnesscastle.models.Program;
 import fitnesscastle.models.User;
 import fitnesscastle.repositories.RoleRepository;
 import fitnesscastle.repositories.UserRepository;
@@ -49,14 +50,21 @@ public class UserService {
 			return null;
 		}
 	}
-	 public User updateuser(User user) {
-	        User user1 = userRepository.findById(user.getId()).orElse(null);
-	        assert user1!=null;
-	        user1.setFirstName(user.getFirstName());
-	        user1.setLastName(user.getLastName());
-	        user1.setEmail(user.getEmail());
 
-	        return userRepository.save(user1);
-	    }
+	public User updateuser(User user) {
+		User user1 = userRepository.findById(user.getId()).orElse(null);
+		assert user1 != null;
+		user1.setFirstName(user.getFirstName());
+		user1.setLastName(user.getLastName());
+		user1.setEmail(user.getEmail());
 
+		return userRepository.save(user1);
+	}
+
+	public void subscribeToProgram(String userEmail, Program program) {
+		User loggedUser = this.findByEmail(userEmail);
+
+		loggedUser.setSubscribedProgram(program);
+		userRepository.save(loggedUser);
+	}
 }

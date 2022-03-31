@@ -82,7 +82,7 @@ public class UsersController {
 		model.addAttribute("currentUser", userService.findByEmail(email));
 		return "homePage.jsp";
 	}
-	
+
 	@GetMapping("/info")
 	public String index(Model model) {
 
@@ -103,4 +103,10 @@ public class UsersController {
             
         }
 
+	@GetMapping("/aboutus")
+	public String aboutus(Model model) {
+		
+		return "aboutus.jsp";
+
+	}
 }
