@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -106,6 +107,24 @@ public class UsersController {
 		User loggedUser = userService.findByEmail(principal.getName());
 		userService.addInfoToUser(loggedUser, age, height, weight);
 		return String.format("redirect:/users/%d", loggedUser.getId());
+	@GetMapping("/users/{userId}/edit")
+	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
+			User thisuser = userService.findUserById(id);
+			model.addAttribute("user", thisuser);
+			return "editprofile..jsp";
+		}
+		
+	@PutMapping("/users/{id}/edit")
+    public String update (@Valid @ModelAttribute("user") User user, BindingResult result,@PathVariable("id") Long id,Model model) {
+		userService.updateuser(user);
+                return "redirect:/exercies";
+            
+        }
+
+	@GetMapping("/aboutus")
+	public String aboutus(Model model) {
+		
+		return "aboutus.jsp";
 
 	}
 

@@ -32,11 +32,11 @@ public class ProgramController {
 	@Autowired
 	private ProgramService programServ;
 
-	@Autowired
-	private UserService userServ;
 
 	@Autowired
 	private CloudinaryService cloudinaryService;
+	@Autowired
+	private UserService userServ;
 
 	@GetMapping("/programs")
 	public String index(Model model) {
