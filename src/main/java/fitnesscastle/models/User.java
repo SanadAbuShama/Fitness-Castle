@@ -37,7 +37,8 @@ public class User {
 	@Size(min = 3)
 	private String lastName;
 
-	private String sex;
+	@Size(min = 1)
+	private String gender;
 
 	@Email
 	private String email;
@@ -140,12 +141,12 @@ public class User {
 		this.subscribedProgram = subscribedProgram;
 	}
 
-	public String getSex() {
-		return sex;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public Date getCreatedAt() {

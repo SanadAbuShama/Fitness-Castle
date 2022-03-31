@@ -55,8 +55,8 @@
 				</div>
 				<div class="row">
 					<div class="col text-start">
-						<form:form action="/admin/programs" method="post"
-							modelAttribute="newProgram">
+						<form:form action="/admin/programs" method="POST"
+							modelAttribute="newProgram" enctype="multipart/form-data">
 							<div class="row">
 								<div class="col-md-6 col-12">
 
@@ -66,13 +66,12 @@
 											path="name" placeholder="Name" />
 									</div>
 									<div class="mb-3">
-									<form:errors class="text-danger" path="category" />
+										<form:errors class="text-danger" path="category" />
 										<form:select class="form-select"
 											aria-label="Default select example" path="category">
-											<option selected>Open this select menu</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
+											<option selected value="weightloss">Weightloss</option>
+											<option value="weightlifting">Weightlifting</option>
+											<option value="cardio">Cardio</option>
 										</form:select>
 									</div>
 									<div class="mb-3">
@@ -80,8 +79,10 @@
 										<form:textarea class="form-control" id="description"
 											path="description" placeholder="Description" rows="3"></form:textarea>
 									</div>
-
-
+									<div class="mb-3 text-start">
+										<label for="image" class="form-label">Add Image:</label> <input
+											class="form-control" type="file" name="file" id="file" />
+									</div>
 									<div class="mb-3">
 										<form:errors class="text-danger" path="day1" />
 										<form:textarea class="form-control" id="day1" path="day1"

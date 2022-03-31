@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import fitnesscastle.models.Program;
 import fitnesscastle.models.User;
 import fitnesscastle.repositories.RoleRepository;
 import fitnesscastle.repositories.UserRepository;
@@ -48,5 +49,12 @@ public class UserService {
 		} else {
 			return null;
 		}
+	}
+
+	public void subscribeToProgram(String userEmail, Program program) {
+		User loggedUser = this.findByEmail(userEmail);
+
+		loggedUser.setSubscribedProgram(program);
+		userRepository.save(loggedUser);
 	}
 }
