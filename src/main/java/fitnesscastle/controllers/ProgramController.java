@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,8 +29,6 @@ public class ProgramController {
 	@Autowired
 	private ProgramService programServ;
 
-	@Autowired
-	private UserService userServ;
 
 
 	@GetMapping("/programs")
@@ -38,14 +37,12 @@ public class ProgramController {
 		return "programs.jsp";
 
 	}
-	@GetMapping("/books/{userId}/edit")
-	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
-			User thisuser = userServ.findUserById(id);
-			model.addAttribute("user", thisuser);
-			return "editprofile.jsp";
-		}
-		
-	
+	@GetMapping("/exercies")
+	public String hasssan(Model model) {
+
+		return "Exercies.jsp";
+
+	}
 
 
 	@GetMapping("/admin/programs/new")

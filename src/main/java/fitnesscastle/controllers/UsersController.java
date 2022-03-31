@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -88,4 +89,18 @@ public class UsersController {
 		return "info.jsp";
 
 	}
+	@GetMapping("/users/{userId}/edit")
+	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
+			User thisuser = userService.findUserById(id);
+			model.addAttribute("user", thisuser);
+			return "editprofile..jsp";
+		}
+		
+	@PutMapping("/users/{id}/edit")
+    public String update (@Valid @ModelAttribute("user") User user, BindingResult result,@PathVariable("id") Long id,Model model) {
+		userService.updateuser(user);
+                return "redirect:/exercies";
+            
+        }
+
 }

@@ -49,4 +49,14 @@ public class UserService {
 			return null;
 		}
 	}
+	 public User updateuser(User user) {
+	        User user1 = userRepository.findById(user.getId()).orElse(null);
+	        assert user1!=null;
+	        user1.setFirstName(user.getFirstName());
+	        user1.setLastName(user.getLastName());
+	        user1.setEmail(user.getEmail());
+
+	        return userRepository.save(user1);
+	    }
+
 }
