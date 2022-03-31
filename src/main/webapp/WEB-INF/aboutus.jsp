@@ -37,7 +37,7 @@
 
 					<li class="my-2"><a href="/logout"
 						class="btn btn-outline-light me-2">Logout</a></li>
-				</ul>
+				</ul>  
 			</div>
 		</div>
 	</nav>
