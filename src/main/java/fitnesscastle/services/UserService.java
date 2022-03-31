@@ -57,4 +57,13 @@ public class UserService {
 		loggedUser.setSubscribedProgram(program);
 		userRepository.save(loggedUser);
 	}
+
+	public void addInfoToUser(User loggedUser, int age, int height, Float weight) {
+		loggedUser.setAge(age);
+		loggedUser.setHeight(height);
+		loggedUser.setWeight(weight);
+		double bmi = weight / (Math.pow((height / 100), 2));
+		loggedUser.setBmi(bmi);
+		userRepository.save(loggedUser);
+	}
 }

@@ -56,6 +56,14 @@ public class ProgramController {
 
 	}
 
+	@GetMapping("/exercises")
+	public String exercises(Model model, Principal principal) {
+		User loggedUser = userServ.findByEmail(principal.getName());
+		model.addAttribute("loggedUser", loggedUser);
+		return "Exercises.jsp";
+
+	}
+
 	@GetMapping("/users/{userId}/edit")
 	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
 		User thisuser = userServ.findUserById(id);
@@ -97,6 +105,14 @@ public class ProgramController {
 
 		}
 		return String.format("redirect:/programs/%d/schedule", id);
+	}
+
+	@GetMapping("/aboutus")
+	public String aboutus(Model model, Principal principal) {
+		User loggedUser = userServ.findByEmail(principal.getName());
+		model.addAttribute("loggedUser", loggedUser);
+		return "aboutus.jsp";
+
 	}
 
 }

@@ -43,6 +43,7 @@
 				<form:form class="row g-3 " method="post" action="/registration"
 					modelAttribute="user">
 					<h2>Registration</h2>
+
 					<div class="form-floating ">
 						<form:errors class="text-light" path="firstName" />
 						<form:input type="text" class="form-control" id="floatingInput"

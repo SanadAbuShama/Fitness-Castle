@@ -3,7 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isErrorPage="true"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +73,10 @@
 			<main class="container-sm mt-5 p-5">
 				<div class="row mb-5">
 					<div class="col">
-						<h3 class="text-white">Here's Your Schedule, Champ!</h3>
+						<h3 class="text-white">
+							<c:out value="${program.name}" />
+							's schedule!
+						</h3>
 					</div>
 					<div class="col text-end">
 						<a href="/programs" class="btn btn-dark">Back to programs</a>
@@ -181,29 +185,29 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="row">
-					<c:choose>
-						<c:when test="${program.id == loggedUser.subscribedProgram.id}">
-							<div class="col">
-								<button class="btn btn-secondary float-end" disabled="disabled">
-									Subscribed!</button>
-							</div>
-						</c:when>
-						<c:otherwise>
+				<sec:authorize access="hasRole('USER')">
+					<div class="row">
+						<c:choose>
+							<c:when test="${program.id == loggedUser.subscribedProgram.id}">
+								<div class="col">
+									<button class="btn btn-secondary float-end" disabled="disabled">
+										Subscribed!</button>
+								</div>
+							</c:when>
+							<c:otherwise>
 
-							<div class="col text-end">
-								<form action="/programs/${program.id}/subscribe" method="post">
-									<input type="hidden" name="_method" value="put"> <input
-										type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}" />
-									<button class="btn btn-dark float-end">Subscribe</button>
-								</form>
-							</div>
-						</c:otherwise>
-					</c:choose>
-
-				</div>
-
+								<div class="col text-end">
+									<form action="/programs/${program.id}/subscribe" method="post">
+										<input type="hidden" name="_method" value="put"> <input
+											type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+										<button class="btn btn-dark float-end">Subscribe</button>
+									</form>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</sec:authorize>
 			</main>
 		</div>
 	</div>

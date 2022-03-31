@@ -14,47 +14,7 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous" />
-<style>
-.logo {
-	width: 130px;
-	height: 100px;
-	margin-top: -40px;
-	margin-bottom: -20px;
-}
 
-.background {
-	background-image: url("/images/gym1.jpg"), url("/images/gym2.avif"),
-		url("/images/gym3.avif");
-	background-repeat: no-repeat repeat-x repeat-y;
-	background-position: 10px 20px, 20px 30px, 15px 25px;
-}
-
-.blur {
-	background: rgba(255, 255, 255, 0.2);
-	backdrop-filter: blur(5px);
-	width: 100%;
-}
-
-.form-control, .form-select {
-	background-color: rgba(255, 255, 255, 0.7) !important;
-}
-
-::-webkit-input-placeholder {
-	color: #212529 !important;
-}
-
-::-moz-placeholder {
-	color: red;
-}
-
-::-ms-placeholder {
-	color: red;
-}
-
-::placeholder {
-	color: red;
-}
-</style>
 
 <title>Document</title>
 </head>
@@ -76,11 +36,15 @@
 						aria-current="page" href="#">Home</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-					<li class="my-2"><a href="" class="btn btn-outline-light me-2">Profile</a>
-					</li>
+					<li class="my-2"><a href="/users/${loggedUser.id}"
+						class="btn btn-outline-light me-2">Profile</a></li>
 
-					<li class="my-2"><a href="/logout"
-						class="btn btn-outline-light me-2">Logout</a></li>
+					<li class="my-2"><form id="logoutForm" method="POST"
+							action="/logout">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" /> <input type="submit"
+								class="btn btn-outline-light me-2" value="Logout" />
+						</form></li>
 				</ul>
 			</div>
 		</div>

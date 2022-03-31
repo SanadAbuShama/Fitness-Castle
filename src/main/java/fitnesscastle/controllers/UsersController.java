@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fitnesscastle.models.User;
 import fitnesscastle.services.UserService;
@@ -74,24 +75,38 @@ public class UsersController {
 		return "profilePage.jsp";
 	}
 
-	@RequestMapping(value = { "/", "/home" })
-	public String home(Principal principal, Model model) {
-		// 1
-		String email = principal.getName();
-		model.addAttribute("currentUser", userService.findByEmail(email));
-		return "homePage.jsp";
-	}
-
 	@GetMapping("/info")
-	public String index(Model model) {
-
+	public String index(Model model, Principal principal) {
+		User loggedUser = userService.findByEmail(principal.getName());
+		model.addAttribute("loggedUser", loggedUser);
 		return "info.jsp";
 
 	}
-	@GetMapping("/aboutus")
-	public String aboutus(Model model) {
-		
-		return "aboutus.jsp";
+
+	@PostMapping("/users/add_info")
+	public String addInfo(@RequestParam("age") int age, @RequestParam("height") int height,
+			@RequestParam("weight") Float weight, Principal principal, RedirectAttributes redirectAttributes) {
+
+		if (age < 18 || height < 50 || weight < 30) {
+			if (age < 18) {
+				redirectAttributes.addFlashAttribute("ageError", "Age must be at least 18 years!");
+
+			}
+			if (height < 50) {
+				redirectAttributes.addFlashAttribute("heightError", "Height must be at least 50 cm!");
+
+			}
+			if (age < 40) {
+				redirectAttributes.addFlashAttribute("weightError", "Weight must be at least 30 kg!");
+
+			}
+			return "redirect:/info";
+		}
+
+		User loggedUser = userService.findByEmail(principal.getName());
+		userService.addInfoToUser(loggedUser, age, height, weight);
+		return String.format("redirect:/users/%d", loggedUser.getId());
 
 	}
+
 }
