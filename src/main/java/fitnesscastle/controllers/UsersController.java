@@ -2,7 +2,7 @@ package fitnesscastle.controllers;
 
 import java.security.Principal;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fitnesscastle.models.User;
+import fitnesscastle.services.CloudinaryService;
 import fitnesscastle.services.UserService;
 import fitnesscastle.validator.UserValidator;
 
@@ -31,6 +33,9 @@ public class UsersController {
 	private UserService userService;
 
 	@Autowired
+	private CloudinaryService cloudinaryService;
+
+	@Autowired
 	private UserValidator userValidator;
 
 	@GetMapping("/registration")
@@ -39,21 +44,19 @@ public class UsersController {
 	}
 
 	@PostMapping("/registration")
-	public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model,
-			HttpSession session) {
+	public String registration(@RequestParam("file") MultipartFile file, @Valid @ModelAttribute("user") User user,
+			BindingResult result, Model model, RedirectAttributes ra) {
 		userValidator.validate(user, result);
 		if (result.hasErrors()) {
 			return "registrationPage.jsp";
 		}
-		userService.saveWithUserRole(user);
-		return "redirect:/home";
-	}
-
-	@RequestMapping("/admin")
-	public String adminPage(Principal principal, Model model) {
-		String email = principal.getName();
-		model.addAttribute("currentUser", userService.findByEmail(email));
-		return "adminPage.jsp";
+		String url = null;
+		if (!file.isEmpty()) {
+			url = cloudinaryService.uploadFile(file);
+		}
+		userService.saveWithUserRole(user, url);
+		ra.addFlashAttribute("registerSuccess", "Registration successful! Login in below!");
+		return "redirect:/login";
 	}
 
 	@RequestMapping("/login")
@@ -69,11 +72,19 @@ public class UsersController {
 	}
 
 	@RequestMapping("/users/{id}")
-	public String login(@PathVariable("id") Long id, Model model) {
+	public String login(@PathVariable("id") Long id, Model model, Principal principal, RedirectAttributes ra,
+			HttpServletRequest request) {
+		User loggedUser = userService.findByEmail(principal.getName());
+		User thisUser = userService.findUserById(id);
+		if (loggedUser.getId() == id || request.isUserInRole("ROLE_ADMIN")) {
+			model.addAttribute("thisUser", thisUser);
+			model.addAttribute("loggedUser", loggedUser);
+			return "profilePage.jsp";
+		} else {
+			ra.addFlashAttribute("error", "Not authorized!");
+			return "redirect:/programs";
+		}
 
-		User loggedUser = userService.findUserById(id);
-		model.addAttribute("loggedUser", loggedUser);
-		return "profilePage.jsp";
 	}
 
 	@GetMapping("/info")
@@ -110,17 +121,31 @@ public class UsersController {
 	}
 
 	@GetMapping("/users/{userId}/edit")
-	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
-		User thisuser = userService.findUserById(id);
-		model.addAttribute("user", thisuser);
-		return "editprofile.jsp";
+	public String editForm(@PathVariable("userId") Long id, Principal principal, Model model,
+			HttpServletRequest request) {
+		User loggedUser = userService.findByEmail(principal.getName());
+		if (loggedUser.getId() == id || request.isUserInRole("ROLE_ADMIN")) {
+			User thisuser = userService.findUserById(id);
+			model.addAttribute("user", thisuser);
+			return "editprofile.jsp";
+		} else {
+			return "redirect/programs";
+		}
+
 	}
 
 	@PutMapping("/users/{id}/edit")
-	public String update(@Valid @ModelAttribute("user") User user, BindingResult result, @PathVariable("id") Long id,
-			Model model) {
-		userService.updateuser(user);
-		return "redirect:/exercies";
+	public String update(@RequestParam("file") MultipartFile file, @Valid @ModelAttribute("user") User user,
+			BindingResult result, @PathVariable("id") Long id, Model model) {
+		if (result.hasErrors()) {
+			return "editprofile.jsp";
+		}
+		String url = null;
+		if (!file.isEmpty()) {
+			url = cloudinaryService.uploadFile(file);
+		}
+		userService.updateuser(user, url);
+		return String.format("redirect:/users/%d", id);
 
 	}
 

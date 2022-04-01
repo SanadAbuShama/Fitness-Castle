@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ page isErrorPage="true"%>
 <html>
 <head>
@@ -12,7 +14,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"> <img class="logo"
+			<a class="navbar-brand" href="/programs"> <img class="logo"
 				src="/images/logo.png" alt="" width="50" height="35" />
 			</a>
 			<button class="navbar-toggler" type="button"
@@ -24,20 +26,25 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Features</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
-					</li>
-					<li class="nav-item"><a class="nav-link disabled">Disabled</a>
-					</li>
+						aria-current="page" href="/programs">Home</a></li>
+					<sec:authorize access="hasRole('ADMIN')">
+						<li class="nav-item"><a class="nav-link"
+							href="/admin/dashboard">Admin dashboard</a></li>
+					</sec:authorize>
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About
+							Us</a></li>
+
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-					<li class="my-2"><a href="" class="btn btn-outline-light me-2">Profile</a>
+					<li class="my-2"><a href="/users/${loggedUser.id}"
+						class="btn btn-outline-light me-2">Profile</a></li>
+					<li class="my-2">
+						<form id="logoutForm" method="POST" action="/logout">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" /> <input type="submit"
+								class="btn btn-outline-light me-2" value="Logout" />
+						</form>
 					</li>
-
-					<li class="my-2"><a href="/logout"
-						class="btn btn-outline-light me-2">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -66,6 +73,7 @@
 											path="name" placeholder="Name" />
 									</div>
 									<div class="mb-3">
+										<form:label path="minBmi">Category:</form:label>
 										<form:errors class="text-danger" path="category" />
 										<form:select class="form-select"
 											aria-label="Default select example" path="category">
@@ -73,6 +81,20 @@
 											<option value="weightlifting">Weightlifting</option>
 											<option value="cardio">Cardio</option>
 										</form:select>
+									</div>
+									<div class="mb-3">
+										<div>
+											<form:errors class="text-danger" path="minBmi" />
+										</div>
+										<form:label path="minBmi">Minimum BMI:</form:label>
+										<form:input path="minBmi" type="number" class="form-control" />
+									</div>
+									<div class="mb-3">
+										<div>
+											<form:errors class="text-danger" path="maxBmi" />
+										</div>
+										<form:label path="minBmi">Maximum BMI:</form:label>
+										<form:input path="maxBmi" type="number" class="form-control" />
 									</div>
 									<div class="mb-3">
 										<form:errors class="text-danger" path="description" />
@@ -83,6 +105,7 @@
 										<label for="image" class="form-label">Add Image:</label> <input
 											class="form-control" type="file" name="file" id="file" />
 									</div>
+
 									<div class="mb-3">
 										<form:errors class="text-danger" path="day1" />
 										<form:textarea class="form-control" id="day1" path="day1"
@@ -93,14 +116,13 @@
 										<form:textarea class="form-control" id="day2" path="day2"
 											placeholder="Day 2" rows="3"></form:textarea>
 									</div>
+								</div>
+								<div class="col-md-6">
 									<div class="mb-3">
 										<form:errors class="text-danger" path="day3" />
 										<form:textarea class="form-control" id="day3" path="day3"
 											placeholder="Day 3" rows="3"></form:textarea>
 									</div>
-								</div>
-								<div class="col-md-6">
-
 									<div class="mb-3">
 										<form:errors class="text-danger" path="day4" />
 										<form:textarea class="form-control" id="day4" path="day4"

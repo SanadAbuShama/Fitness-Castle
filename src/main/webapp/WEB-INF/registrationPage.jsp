@@ -26,12 +26,8 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Features</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
-					</li>
-					<li class="nav-item"><a class="nav-link disabled">Disabled</a>
-					</li>
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About
+							Us</a></li>
 				</ul>
 			</div>
 		</div>
@@ -40,9 +36,9 @@
 		<h1 class="text-center">Welcome To Fitness Castle</h1>
 		<div class="row justify-content-evenly">
 			<div class="col-4" id="rig">
-				<form:form class="row g-3 " method="post" action="/registration"
-					modelAttribute="user">
-					<h2>Registration</h2>
+				<form:form class="row g-3 mb-5" method="post" action="/registration"
+					modelAttribute="user" enctype="multipart/form-data">
+					<h2 class="text-light">Registration</h2>
 
 					<div class="form-floating ">
 						<form:errors class="text-light" path="firstName" />
@@ -71,6 +67,11 @@
 							<option value="female">Female</option>
 						</form:select>
 					</div>
+					<div class="mb-3 text-start">
+						<label for="image" class="form-label text-light">Add Image
+							(Optional):</label> <input class="form-control" type="file" name="file"
+							id="file" />
+					</div>
 					<div class="form-floating">
 						<form:errors class="text-light" path="password" />
 						<form:input type="password" class="form-control"
@@ -87,6 +88,10 @@
 						<button class="btn btn-outline-light" type="submit">Register</button>
 					</div>
 				</form:form>
+				<p class="text-light my-3">
+					Already have an account? <a
+						class="btn btn-sm btn-outline-light ms-2" href="/login">Login</a>
+				</p>
 			</div>
 		</div>
 	</div>

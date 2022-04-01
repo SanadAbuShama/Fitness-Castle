@@ -46,7 +46,7 @@
 		<div class="blur">
 			<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#"> <img class="logo"
+					<a class="navbar-brand" href="/programs"> <img class="logo"
 						src="/images/Logo.png" alt="">
 					</a>
 					<button class="navbar-toggler" type="button"
@@ -58,25 +58,43 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item"><a style="color: teal;"
-								class="nav-link active" href="">Home</a></li>
+								class="nav-link active" href="/programs">Home</a></li>
 						</ul>
 						<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 							<li class="my-2"><a href="/logout"
 								class="btn btn-outline-light me-2">Logout</a></li>
 							<li class="my-2"><a href=""
 								class="btn btn-outline-light me-2">Profile</a></li>
-
 						</ul>
 					</div>
 				</div>
 			</nav>
 			<main class="container-sm mt-5 p-5">
 				<div class="row mb-5">
-					<div class="col">
-						<h3 class="text-white">
+					<div class="col text-light">
+						<h3>
 							<c:out value="${program.name}" />
 							's schedule!
 						</h3>
+						<p>
+							Category:
+							<c:out value="${program.category}" />
+						</p>
+						<p>
+							Instructor:
+							<c:out value="${program.creator.firstName}" />
+							<c:out value="${program.creator.lastName}" />
+						</p>
+						<p>
+							Subscribers:
+							<c:out value="${program.subscribers.size()}" />
+						</p>
+						<p>
+							BMI range:
+							<c:out value="${program.minBmi}" />
+							-
+							<c:out value="${program.maxBmi}" />
+						</p>
 					</div>
 					<div class="col text-end">
 						<a href="/programs" class="btn btn-dark">Back to programs</a>

@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +37,11 @@ public class ProgramController {
 	private UserService userServ;
 
 	@GetMapping("/programs")
-	public String index(Model model) {
+	public String index(Model model, Principal principal) {
 		List<Program> programs = programServ.allPrograms();
+		User loggedUser = userServ.findByEmail(principal.getName());
 		model.addAttribute("programs", programs);
+		model.addAttribute("loggedUser", loggedUser);
 		return "programs.jsp";
 
 	}
@@ -64,8 +65,9 @@ public class ProgramController {
 	}
 
 	@GetMapping("/admin/programs/new")
-	public String renderNewForm(@ModelAttribute("newProgram") Program newProject, HttpSession session) {
-
+	public String renderNewForm(@ModelAttribute("newProgram") Program newProject, Model model, Principal principal) {
+		User loggedUser = userServ.findByEmail(principal.getName());
+		model.addAttribute("loggedUser", loggedUser);
 		return "newProgram.jsp";
 
 	}
@@ -101,8 +103,12 @@ public class ProgramController {
 
 	@GetMapping("/aboutus")
 	public String aboutus(Model model, Principal principal) {
-		User loggedUser = userServ.findByEmail(principal.getName());
-		model.addAttribute("loggedUser", loggedUser);
+
+		if (principal != null) {
+			User loggedUser = userServ.findByEmail(principal.getName());
+			model.addAttribute("loggedUser", loggedUser);
+		}
+
 		return "aboutus.jsp";
 
 	}

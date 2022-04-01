@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,25 +26,33 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/programs">Home</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/programs/${loggedUser.subscribedProgram.id}/schedule">My
-							Program</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
-					</li>
-					<li class="nav-item"><a class="nav-link disabled">Disabled</a>
-					</li>
 				</ul>
-				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-					<li class="my-2"><a href="/users/${loggedUser.id}"
-						class="btn btn-outline-light me-2">Profile</a></li>
-					<li class="my-2">
-						<form id="logoutForm" method="POST" action="/logout">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <input type="submit"
-								class="btn btn-outline-light me-2" value="Logout" />
-						</form>
-					</li>
-				</ul>
+				<c:choose>
+					<c:when test="${loggedUser != null}">
+						<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+							<li class="my-2"><a href="/users/${loggedUser.id}"
+								class="btn btn-outline-light me-2">Profile</a></li>
+							<li class="my-2">
+								<form id="logoutForm" method="POST" action="/logout">
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" /> <input type="submit"
+										class="btn btn-outline-light me-2" value="Logout" />
+								</form>
+							</li>
+						</ul>
+
+					</c:when>
+					<c:otherwise>
+
+						<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+							<li class="my-2"><a href="/registration"
+								class="btn btn-outline-light me-2">Register</a></li>
+							<li class="my-2"><a href="/login"
+								class="btn btn-outline-light me-2">Login</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 	</nav>
