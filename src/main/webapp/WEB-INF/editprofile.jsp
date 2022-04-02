@@ -36,11 +36,10 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav">
-
-							<li class="nav-item"><a style="color: teal;"
-								class="nav-link active" href="">Home</a></li>
-						</ul>
+									<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a> </li>
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
+				</ul>
 						<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 							<li class="my-2"><a href="/users/${user.id}"
 								class="btn btn-outline-light me-2">Profile</a></li>
@@ -107,7 +106,7 @@
 									</div>
 									<div class="form-group ">
 
-										<a href="/profile" class="btn  btn-danger ">Cancel</a>
+										<a href="/users/${user.id}" class="btn  btn-danger ">Cancel</a>
 									</div>
 
 								</div>
