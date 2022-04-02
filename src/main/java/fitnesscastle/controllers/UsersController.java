@@ -128,6 +128,7 @@ public class UsersController {
 		if (loggedUser.getId() == id || request.isUserInRole("ROLE_ADMIN")) {
 			User thisuser = userService.findUserById(id);
 			model.addAttribute("user", thisuser);
+			model.addAttribute("loggedUser", loggedUser);
 			return "editprofile.jsp";
 		} else {
 			return "redirect/programs";

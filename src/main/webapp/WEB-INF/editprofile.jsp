@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isErrorPage="true"%>
 
 <!DOCTYPE html>
@@ -112,7 +113,14 @@
 									</div>
 									<div class="form-group ">
 										<sec:authorize access="hasRole('ADMIN')">
-											<a href="/admin/dashboard" class="btn  btn-danger ">Cancel</a>
+											<c:choose>
+												<c:when test="${loggedUser.id == user.id}">
+													<a href="/users/${loggedUser.id}" class="btn  btn-danger ">Cancel</a>
+												</c:when>
+												<c:otherwise>
+													<a href="/admin/dashboard" class="btn  btn-danger ">Cancel</a>
+												</c:otherwise>
+											</c:choose>
 										</sec:authorize>
 										<sec:authorize access="hasRole('USER')">
 											<a href="/users/${user.id}" class="btn  btn-danger ">Cancel</a>

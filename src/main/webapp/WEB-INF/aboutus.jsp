@@ -121,7 +121,7 @@
 									<li class="list-group-item bg-dark text-white-50">Full
 										Stack Developer</li>
 									<li class="list-group-item bg-dark text-white-50"><a
-										href="mailto:mahmoud_alessa@yahoo.com" class="text-white-50">mahmoud_alessa@yahoo.com</a>
+										href="mailto:mahmoud_alessa@yahoo.com" class="text-white-50">Hassanodeh1997@gmail.com</a>
 									</li>
 									<li class="list-group-item bg-dark text-white-50">
 										<div class="row">
