@@ -1,6 +1,7 @@
 package fitnesscastle.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -146,6 +147,16 @@ public class UsersController {
 		}
 		userService.updateuser(user, url);
 		return String.format("redirect:/users/%d", id);
+
+	}
+
+	@GetMapping("/admin/dashboard")
+	public String dashboard(Principal principal, Model model) {
+		User loggedUser = userService.findByEmail(principal.getName());
+		List<User> allUsers = userService.allUsers();
+		model.addAttribute("loggedUser", loggedUser);
+		model.addAttribute("allUsers", allUsers);
+		return "adminDashboard.jsp";
 
 	}
 

@@ -10,6 +10,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -106,8 +108,13 @@
 											Information</button>
 									</div>
 									<div class="form-group ">
+										<sec:authorize access="hasRole('ADMIN')">
+											<a href="/admin/dashboard" class="btn  btn-danger ">Cancel</a>
+										</sec:authorize>
+										<sec:authorize access="hasRole('USER')">
+											<a href="/users/${user.id}" class="btn  btn-danger ">Cancel</a>
+										</sec:authorize>
 
-										<a href="/profile" class="btn  btn-danger ">Cancel</a>
 									</div>
 
 								</div>
