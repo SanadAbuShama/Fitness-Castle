@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,19 +25,16 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Features</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
-					</li>
-					<li class="nav-item"><a class="nav-link disabled">Disabled</a>
-					</li>
+					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a> </li>
+					<sec:authorize access="hasRole('ADMIN')">
+						<li class="nav-item"><a class="nav-link"
+							href="/admin/dashboard">Admin dashboard</a></li>
+							<li class="nav-item"><a class="nav-link"
+							href="/admin/programs/new">Add Program</a></li>
+					</sec:authorize>
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-					<li class="my-2"><a href="/users/${loggedUser.id}"
-						class="btn btn-outline-light me-2">Profile</a></li>
-
 					<li class="my-2"><form id="logoutForm" method="POST"
 							action="/logout">
 							<input type="hidden" name="${_csrf.parameterName}"
@@ -95,7 +94,9 @@
 					</div>
 					<div class="d-grid gap-2 col-3 mx-auto">
 						<button class="btn btn-secondary btn-lg" type="submit">Submit</button>
+						<a href="/users/${loggedUser.id}" class="btn  btn-danger ">Cancel</a>
 					</div>
+					
 				</form>
 			</div>
 		</div>

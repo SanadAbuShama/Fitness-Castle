@@ -27,15 +27,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/programs">Home</a></li>
 					<sec:authorize access="hasRole('ADMIN')">
 						<li class="nav-item"><a class="nav-link"
 							href="/admin/dashboard">Admin dashboard</a></li>
+							<li class="nav-item"><a class="nav-link"
+							href="/admin/programs/new">Add Program</a></li>
 					</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="/aboutus">About
-							Us</a></li>
-
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 					<li class="my-2"><a href="/users/${loggedUser.id}"
@@ -106,7 +104,6 @@
 					</c:if>
 				</c:forEach>
 			</div>
-
 			<h4 class="my-5 text-light text-center">Other programs:</h4>
 			<div class="row mb-5 row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 				<c:forEach var="program" items="${programs}">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isErrorPage="true"%>
 
 <!DOCTYPE html>
@@ -10,6 +11,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -17,7 +20,7 @@
 	crossorigin="anonymous" />
 
 <title>Edit Profile</title>
-<link href="/css/editprofile.css" rel="stylesheet">
+<link href="/css/editprofile2.css" rel="stylesheet">
 
 </head>
 
@@ -37,9 +40,10 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-
-							<li class="nav-item"><a style="color: teal;"
-								class="nav-link active" href="">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="/programs">Programs</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="/aboutus">About
+									Us</a></li>
 						</ul>
 						<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 							<li class="my-2"><a href="/users/${user.id}"
@@ -106,8 +110,20 @@
 											Information</button>
 									</div>
 									<div class="form-group ">
+										<sec:authorize access="hasRole('ADMIN')">
+											<c:choose>
+												<c:when test="${loggedUser.id == user.id}">
+													<a href="/users/${loggedUser.id}" class="btn  btn-danger ">Cancel</a>
+												</c:when>
+												<c:otherwise>
+													<a href="/admin/dashboard" class="btn  btn-danger ">Cancel</a>
+												</c:otherwise>
+											</c:choose>
+										</sec:authorize>
+										<sec:authorize access="hasRole('USER')">
+											<a href="/users/${user.id}" class="btn  btn-danger ">Cancel</a>
+										</sec:authorize>
 
-										<a href="/profile" class="btn  btn-danger ">Cancel</a>
 									</div>
 
 								</div>

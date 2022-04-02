@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +26,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/programs">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a></li>
+					<sec:authorize access="hasRole('ADMIN')">
+						<li class="nav-item"><a class="nav-link"
+							href="/admin/dashboard">Admin dashboard</a></li>
+							<li class="nav-item"><a class="nav-link"
+							href="/admin/programs/new">Add Program</a></li>
+					</sec:authorize>
 				</ul>
 				<c:choose>
 					<c:when test="${loggedUser != null}">

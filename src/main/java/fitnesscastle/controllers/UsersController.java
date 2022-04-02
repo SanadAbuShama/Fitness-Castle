@@ -1,6 +1,7 @@
 package fitnesscastle.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -127,6 +128,7 @@ public class UsersController {
 		if (loggedUser.getId() == id || request.isUserInRole("ROLE_ADMIN")) {
 			User thisuser = userService.findUserById(id);
 			model.addAttribute("user", thisuser);
+			model.addAttribute("loggedUser", loggedUser);
 			return "editprofile.jsp";
 		} else {
 			return "redirect/programs";
@@ -149,5 +151,14 @@ public class UsersController {
 
 	}
 
+	@GetMapping("/admin/dashboard")
+	public String dashboard(Principal principal, Model model) {
+		User loggedUser = userService.findByEmail(principal.getName());
+		List<User> allUsers = userService.allUsers();
+		model.addAttribute("loggedUser", loggedUser);
+		model.addAttribute("allUsers", allUsers);
+		return "adminDashboard.jsp";
+
+	}
 
 }

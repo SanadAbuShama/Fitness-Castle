@@ -1,5 +1,6 @@
 package fitnesscastle.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -80,5 +81,10 @@ public class UserService {
 		double bmi = weight / (Math.pow((height / 100), 2));
 		loggedUser.setBmi(bmi);
 		userRepository.save(loggedUser);
+	}
+
+	public List<User> allUsers() {
+		return userRepository.findAll();
+
 	}
 }
