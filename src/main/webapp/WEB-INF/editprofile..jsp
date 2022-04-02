@@ -80,16 +80,13 @@
 								</div>
 								<div class="row justify-content-between text-left">
 								</div>
-
 								<div class="row justify-content-center">
 									<div class="form-group col-6"> 
 										<button type="submit"class="btn-block btn-primary">Update Information</button>
 									</div>
 									<div class="form-group ">
-
 										<a href="/profile" class="btn  btn-danger ">Cancel</a>
 									</div>
-
 								</div>
 							</form:form>
 						</div>
@@ -105,5 +102,4 @@
 	crossorigin="anonymous"></script>
 
 </body>
-
 </html>

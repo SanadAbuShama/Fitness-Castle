@@ -46,6 +46,12 @@ public class ProgramController {
 
 	}
 
+	@GetMapping("/exercises")
+	public String exercises(Model model) {
+		return "Exercies.jsp";
+
+	}
+
 	@GetMapping("/programs/{id}/schedule")
 	public String schedule(@PathVariable("id") Long id, Model model, Principal principal) {
 		Program program = programServ.findProgramById(id);
@@ -56,12 +62,6 @@ public class ProgramController {
 
 	}
 
-	@GetMapping("/users/{userId}/edit")
-	public String editForm(@PathVariable("userId") Long id, HttpSession session, Model model) {
-		User thisuser = userServ.findUserById(id);
-		model.addAttribute("user", thisuser);
-		return "editprofile.jsp";
-	}
 
 	@GetMapping("/admin/programs/new")
 	public String renderNewForm(@ModelAttribute("newProgram") Program newProject, HttpSession session) {
