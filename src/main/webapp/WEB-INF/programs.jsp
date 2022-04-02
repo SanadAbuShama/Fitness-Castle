@@ -33,6 +33,7 @@
 							<li class="nav-item"><a class="nav-link"
 							href="/admin/programs/new">Add Program</a></li>
 					</sec:authorize>
+					<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
 					<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
