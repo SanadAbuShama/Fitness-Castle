@@ -19,6 +19,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -66,6 +67,14 @@ public class Program {
 	private String day7;
 
 	private String image;
+
+	@NotNull(message = "Minimum bmi is required!")
+	@Range(min = 10, max = 60, message = "Please enter a valid bmi!")
+	double minBmi;
+
+	@NotNull(message = "Maximum bmi is required!")
+	@Range(min = 10, max = 60, message = "Please enter a valid bmi!")
+	double maxBmi;
 
 	@NotEmpty(message = "Category is required!")
 	private String category;
@@ -196,6 +205,24 @@ public class Program {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	
+	
+	public double getMinBmi() {
+		return minBmi;
+	}
+
+	public void setMinBmi(double minBmi) {
+		this.minBmi = minBmi;
+	}
+
+	public double getMaxBmi() {
+		return maxBmi;
+	}
+
+	public void setMaxBmi(double maxBmi) {
+		this.maxBmi = maxBmi;
 	}
 
 	public Date getCreatedAt() {

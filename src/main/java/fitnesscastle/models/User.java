@@ -40,7 +40,10 @@ public class User {
 	@Size(min = 1)
 	private String gender;
 
+	private String image;
+
 	@Email
+	@Size(min = 1)
 	private String email;
 
 	@Size(min = 5)
@@ -48,6 +51,14 @@ public class User {
 
 	@Transient
 	private String confirm;
+
+	double age;
+
+	double height;
+
+	float weight;
+
+	double bmi;
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -147,6 +158,52 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public double getAge() {
+		return age;
+	}
+
+	public void setAge(double age) {
+		this.age = age;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(float weight) {
+		this.weight = weight;
+	}
+
+	public double getBmi() {
+		return bmi;
+	}
+
+	public void setBmi(double bmi) {
+		this.bmi = bmi;
+	}
+
+	
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public Date getCreatedAt() {

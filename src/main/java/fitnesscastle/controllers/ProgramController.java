@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +31,17 @@ public class ProgramController {
 	@Autowired
 	private ProgramService programServ;
 
-
 	@Autowired
 	private CloudinaryService cloudinaryService;
 	@Autowired
 	private UserService userServ;
 
 	@GetMapping("/programs")
-	public String index(Model model) {
+	public String index(Model model, Principal principal) {
 		List<Program> programs = programServ.allPrograms();
+		User loggedUser = userServ.findByEmail(principal.getName());
 		model.addAttribute("programs", programs);
+		model.addAttribute("loggedUser", loggedUser);
 		return "programs.jsp";
 
 	}
@@ -62,10 +62,18 @@ public class ProgramController {
 
 	}
 
+	@GetMapping("/exercises")
+	public String exercises(Model model, Principal principal) {
+		User loggedUser = userServ.findByEmail(principal.getName());
+		model.addAttribute("loggedUser", loggedUser);
+		return "Exercises.jsp";
+
+	}
 
 	@GetMapping("/admin/programs/new")
-	public String renderNewForm(@ModelAttribute("newProgram") Program newProject, HttpSession session) {
-
+	public String renderNewForm(@ModelAttribute("newProgram") Program newProject, Model model, Principal principal) {
+		User loggedUser = userServ.findByEmail(principal.getName());
+		model.addAttribute("loggedUser", loggedUser);
 		return "newProgram.jsp";
 
 	}
@@ -97,6 +105,18 @@ public class ProgramController {
 
 		}
 		return String.format("redirect:/programs/%d/schedule", id);
+	}
+
+	@GetMapping("/aboutus")
+	public String aboutus(Model model, Principal principal) {
+
+		if (principal != null) {
+			User loggedUser = userServ.findByEmail(principal.getName());
+			model.addAttribute("loggedUser", loggedUser);
+		}
+
+		return "aboutus.jsp";
+
 	}
 
 }

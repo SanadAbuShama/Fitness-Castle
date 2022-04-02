@@ -24,16 +24,18 @@ public class UserService {
 	}
 
 	// 1
-	public void saveWithUserRole(User user) {
+	public void saveWithUserRole(User user, String image) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		user.setRoles(roleRepository.findByName("ROLE_USER"));
+		user.setImage(image);
 		userRepository.save(user);
 	}
 
 	// 2
-	public void saveUserWithAdminRole(User user) {
+	public void saveUserWithAdminRole(User user, String image) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		user.setRoles(roleRepository.findByName("ROLE_ADMIN"));
+		user.setImage(image);
 		userRepository.save(user);
 	}
 
@@ -51,12 +53,15 @@ public class UserService {
 		}
 	}
 
-	public User updateuser(User user) {
+	public User updateuser(User user, String image) {
 		User user1 = userRepository.findById(user.getId()).orElse(null);
 		assert user1 != null;
 		user1.setFirstName(user.getFirstName());
 		user1.setLastName(user.getLastName());
 		user1.setEmail(user.getEmail());
+		if (image != null) {
+			user1.setImage(image);
+		}
 
 		return userRepository.save(user1);
 	}
@@ -65,6 +70,15 @@ public class UserService {
 		User loggedUser = this.findByEmail(userEmail);
 
 		loggedUser.setSubscribedProgram(program);
+		userRepository.save(loggedUser);
+	}
+
+	public void addInfoToUser(User loggedUser, double age, double height, Float weight) {
+		loggedUser.setAge(age);
+		loggedUser.setHeight(height);
+		loggedUser.setWeight(weight);
+		double bmi = weight / (Math.pow((height / 100), 2));
+		loggedUser.setBmi(bmi);
 		userRepository.save(loggedUser);
 	}
 }

@@ -3,7 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isErrorPage="true"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +46,7 @@
 		<div class="blur">
 			<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#"> <img class="logo"
+					<a class="navbar-brand" href="/programs"> <img class="logo"
 						src="/images/Logo.png" alt="">
 					</a>
 					<button class="navbar-toggler" type="button"
@@ -57,22 +58,43 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item"><a style="color: teal;"
-								class="nav-link active" href="">Home</a></li>
+								class="nav-link active" href="/programs">Home</a></li>
 						</ul>
 						<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 							<li class="my-2"><a href="/logout"
 								class="btn btn-outline-light me-2">Logout</a></li>
 							<li class="my-2"><a href=""
 								class="btn btn-outline-light me-2">Profile</a></li>
-
 						</ul>
 					</div>
 				</div>
 			</nav>
 			<main class="container-sm mt-5 p-5">
 				<div class="row mb-5">
-					<div class="col">
-						<h3 class="text-white">Here's Your Schedule, Champ!</h3>
+					<div class="col text-light">
+						<h3>
+							<c:out value="${program.name}" />
+							's schedule!
+						</h3>
+						<p>
+							Category:
+							<c:out value="${program.category}" />
+						</p>
+						<p>
+							Instructor:
+							<c:out value="${program.creator.firstName}" />
+							<c:out value="${program.creator.lastName}" />
+						</p>
+						<p>
+							Subscribers:
+							<c:out value="${program.subscribers.size()}" />
+						</p>
+						<p>
+							BMI range:
+							<c:out value="${program.minBmi}" />
+							-
+							<c:out value="${program.maxBmi}" />
+						</p>
 					</div>
 					<div class="col text-end">
 						<a href="/programs" class="btn btn-dark">Back to programs</a>
@@ -181,29 +203,29 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="row">
-					<c:choose>
-						<c:when test="${program.id == loggedUser.subscribedProgram.id}">
-							<div class="col">
-								<button class="btn btn-secondary float-end" disabled="disabled">
-									Subscribed!</button>
-							</div>
-						</c:when>
-						<c:otherwise>
+				<sec:authorize access="hasRole('USER')">
+					<div class="row">
+						<c:choose>
+							<c:when test="${program.id == loggedUser.subscribedProgram.id}">
+								<div class="col">
+									<button class="btn btn-secondary float-end" disabled="disabled">
+										Subscribed!</button>
+								</div>
+							</c:when>
+							<c:otherwise>
 
-							<div class="col text-end">
-								<form action="/programs/${program.id}/subscribe" method="post">
-									<input type="hidden" name="_method" value="put"> <input
-										type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}" />
-									<button class="btn btn-dark float-end">Subscribe</button>
-								</form>
-							</div>
-						</c:otherwise>
-					</c:choose>
-
-				</div>
-
+								<div class="col text-end">
+									<form action="/programs/${program.id}/subscribe" method="post">
+										<input type="hidden" name="_method" value="put"> <input
+											type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+										<button class="btn btn-dark float-end">Subscribe</button>
+									</form>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</sec:authorize>
 			</main>
 		</div>
 	</div>

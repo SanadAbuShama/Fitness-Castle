@@ -36,7 +36,7 @@
     margin-bottom: 0
 }
 
-input,
+input[type="text"],
 textarea,
 button {
     padding: 8px 15px;
@@ -48,7 +48,7 @@ button {
     font-weight: 300
 }
 
-input:focus,
+input[type="text"]:focus,
 textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
