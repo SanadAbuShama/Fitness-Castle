@@ -53,12 +53,21 @@
 			<div class="col-xl-8 col-md-10 offset-xl-2 offset-md-1 col">
 				<div class="row mb-5">
 					<div class="col">
-						<h3>Edit a program</h3>
+						<form:form action="/programs/${program.id}/delete" method="post">
+							<input type="hidden" name="_method" value="delete">
+							<button type="submit" class="btn btn-info  btn-dark">Delete
+								${program.name} program</button>
+						</form:form>
 					</div>
 					<div class="col text-end">
 						<a href="/programs" class="btn btn-dark">Back to programs</a>
+
 					</div>
 				</div>
+				<div class="col text-center">
+					<h3>Edit ${program.name} program</h3>
+				</div>
+
 				<div class="row">
 					<div class="col text-start">
 						<form:form action="/admin/${program.id}/edit" method="POST"
@@ -146,13 +155,8 @@
 									</div>
 								</div>
 							</div>
-							<button type="submit" class="btn btn-dark float-end ms-2">Update</button>
+							<button type="submit" class="btn btn-dark float-end ms-2">Update ${program.name} program</button>
 							<a href="/admin/dashboard" class="btn btn-danger float-end">Cancel</a>
-						</form:form>
-						<form:form action="/programs/${program.id}/delete" method="post">
-							<input type="hidden" name="_method" value="delete">
-							<button type="submit" class="btn btn-info ">Delete
-								program</button>
 						</form:form>
 					</div>
 
