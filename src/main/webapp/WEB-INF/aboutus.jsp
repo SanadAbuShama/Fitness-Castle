@@ -30,9 +30,9 @@
 					<sec:authorize access="hasRole('ADMIN')">
 						<li class="nav-item"><a class="nav-link"
 							href="/admin/dashboard">Admin dashboard</a></li>
-							<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link"
 							href="/admin/programs/new">Add Program</a></li>
-							<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
+						<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
 					</sec:authorize>
 				</ul>
 				<c:choose>
