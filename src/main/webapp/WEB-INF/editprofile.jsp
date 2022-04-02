@@ -20,7 +20,7 @@
 	crossorigin="anonymous" />
 
 <title>Edit Profile</title>
-<link href="/css/editprofile.css" rel="stylesheet">
+<link href="/css/editprofile2.css" rel="stylesheet">
 
 </head>
 
