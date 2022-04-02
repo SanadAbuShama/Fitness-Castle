@@ -215,6 +215,9 @@
 						</tbody>
 					</table>
 				</div>
+				<div>
+					<h3 class="text-warning">You can check the Exercises tap for a reference!</h3>
+				</div>
 				<sec:authorize access="hasRole('USER')">
 					<div class="row">
 						<c:choose>
