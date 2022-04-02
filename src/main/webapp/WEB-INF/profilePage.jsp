@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/css/profilePage.css">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <meta charset="ISO-8859-1">
-<title>Programs</title>
+<title>Your Profile</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">

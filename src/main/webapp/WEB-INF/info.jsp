@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/info.css">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add body parameters </title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
