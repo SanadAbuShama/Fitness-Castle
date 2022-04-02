@@ -67,6 +67,10 @@ public class ProgramService {
 
 		return programRepo.save(prog1);
 	}
+	public void delete(Long id) {
+        Program delete = programRepo.findById(id).orElse(null); 
+        programRepo.delete(delete);
+      }
 
 
 }

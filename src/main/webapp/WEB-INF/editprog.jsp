@@ -146,7 +146,11 @@
 							</div>
 							<button type="submit" class="btn btn-dark float-end ms-2">Update</button>
 							<a href="/admin/dashboard" class="btn btn-danger float-end">Cancel</a>
+																<form:form action="/programs/${program.id}/delete" method="post">
+								      	<input type="hidden" name="_method" value="delete">
+								      	<button type="submit" class="btn btn-info ">Delete program</button></form:form>							
 						</form:form>
+						
 					</div>
 
 				</div>
