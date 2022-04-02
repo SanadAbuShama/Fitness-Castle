@@ -14,7 +14,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/programs"> <img class="logo"
+			<a class="navbar-brand" href="#"> <img class="logo"
 				src="/images/logo.png" alt="" width="50" height="35" />
 			</a>
 			<button class="navbar-toggler" type="button"
@@ -25,26 +25,23 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-
+					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a> </li>
 					<sec:authorize access="hasRole('ADMIN')">
 						<li class="nav-item"><a class="nav-link"
 							href="/admin/dashboard">Admin dashboard</a></li>
+							<li class="nav-item"><a class="nav-link"
+							href="/admin/programs/new">Add Program</a></li>
 					</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
-					<li class="nav-item"><a class="nav-link" href="/aboutus">About
-							Us</a></li>
-
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-					<li class="my-2"><a href="/users/${loggedUser.id}"
-						class="btn btn-outline-light me-2">Profile</a></li>
-					<li class="my-2">
-						<form id="logoutForm" method="POST" action="/logout">
+					<li class="my-2"><form id="logoutForm" method="POST"
+							action="/logout">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" /> <input type="submit"
 								class="btn btn-outline-light me-2" value="Logout" />
-						</form>
-					</li>
+						</form></li>
 				</ul>
 			</div>
 		</div>
