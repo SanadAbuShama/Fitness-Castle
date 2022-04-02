@@ -39,8 +39,13 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-							<li class="nav-item"><a style="color: teal;"
-								class="nav-link active" href="">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="/programs">Programs</a> </li>
+							
+							<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
+						<sec:authorize access="hasRole('ADMIN')">
+							<li class="nav-item"><a class="nav-link"
+							href="/admin/dashboard">Admin dashboard</a></li>
+						</sec:authorize>
 							<li class="nav-item"><a class="nav-link active"
 								aria-current="page" href="#Biceps">Biceps & forearms</a></li>
 							<li class="nav-item"><a class="nav-link active"

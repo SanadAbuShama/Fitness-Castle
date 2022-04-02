@@ -46,12 +46,6 @@ public class ProgramController {
 
 	}
 
-	@GetMapping("/exercises")
-	public String exercises(Model model) {
-		return "Exercies.jsp";
-
-	}
-
 	@GetMapping("/programs/{id}/schedule")
 	public String schedule(@PathVariable("id") Long id, Model model, Principal principal) {
 		Program program = programServ.findProgramById(id);
