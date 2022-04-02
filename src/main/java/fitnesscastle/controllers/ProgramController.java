@@ -30,6 +30,7 @@ public class ProgramController {
 
 	@Autowired
 	private ProgramService programServ;
+	
 
 	@Autowired
 	private CloudinaryService cloudinaryService;
@@ -43,12 +44,6 @@ public class ProgramController {
 		model.addAttribute("programs", programs);
 		model.addAttribute("loggedUser", loggedUser);
 		return "programs.jsp";
-
-	}
-
-	@GetMapping("/exercises")
-	public String exercises(Model model) {
-		return "Exercies.jsp";
 
 	}
 
@@ -115,8 +110,38 @@ public class ProgramController {
 			model.addAttribute("loggedUser", loggedUser);
 		}
 
-		return "aboutus.jsp";
+		return "aboutus.jsp";	
 
 	}
+	@GetMapping("/admin/{programsid}/edit")
+	public String editprog(@PathVariable("programsid") Long id, Principal principal, Model model,
+			HttpServletRequest request) {
+		User loggedUser = userServ.findByEmail(principal.getName());
+		if (loggedUser.getId() == id || request.isUserInRole("ROLE_ADMIN")) {
+			Program thisprog = programServ.findProgramById(id);
+			model.addAttribute("program", thisprog);
+			return "editprog.jsp";
+		} else {
+			return "redirect/";
+		}
+
+
+	}
+	@PutMapping("/admin/{id}/edit")
+	public String update(@RequestParam("file") MultipartFile file, @Valid @ModelAttribute("prog") Program program,
+			BindingResult result, @PathVariable("id") Long id, Model model) {
+		if (result.hasErrors()) {
+			return "editprog.jsp";
+		}
+		String url = null;
+		if (!file.isEmpty()) {
+			url = cloudinaryService.uploadFile(file);
+		}
+		programServ.updateprog(program, url);
+		return "redirect:/admin/dashboard";
+
+	}
+
+
 
 }
