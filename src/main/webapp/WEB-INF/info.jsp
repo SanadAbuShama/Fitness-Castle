@@ -95,7 +95,9 @@
 					</div>
 					<div class="d-grid gap-2 col-3 mx-auto">
 						<button class="btn btn-secondary btn-lg" type="submit">Submit</button>
+						<a href="/users/${loggedUser.id}" class="btn  btn-danger ">Cancel</a>
 					</div>
+					
 				</form>
 			</div>
 		</div>

@@ -26,11 +26,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a>
-					</li>
-
+					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a> </li>
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 					<li class="my-2"><form id="logoutForm" method="POST"
