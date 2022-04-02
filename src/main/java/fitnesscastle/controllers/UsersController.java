@@ -39,6 +39,11 @@ public class UsersController {
 	@Autowired
 	private UserValidator userValidator;
 
+	@GetMapping("/")
+	public String redirect() {
+		return "redirect:/login";
+	}
+
 	@GetMapping("/registration")
 	public String registerForm(@Valid @ModelAttribute("user") User user) {
 		return "registrationPage.jsp";
@@ -48,6 +53,7 @@ public class UsersController {
 	public String registration(@RequestParam("file") MultipartFile file, @Valid @ModelAttribute("user") User user,
 			BindingResult result, Model model, RedirectAttributes ra) {
 		userValidator.validate(user, result);
+		List<User> allUsers = userService.allUsers();
 		if (result.hasErrors()) {
 			return "registrationPage.jsp";
 		}
@@ -55,7 +61,11 @@ public class UsersController {
 		if (!file.isEmpty()) {
 			url = cloudinaryService.uploadFile(file);
 		}
-		userService.saveWithUserRole(user, url);
+		if (allUsers.size() == 0) {
+			userService.saveUserWithAdminRole(user, url);
+		} else {
+			userService.saveWithUserRole(user, url);
+		}
 		ra.addFlashAttribute("registerSuccess", "Registration successful! Login in below!");
 		return "redirect:/login";
 	}
@@ -158,6 +168,14 @@ public class UsersController {
 		model.addAttribute("loggedUser", loggedUser);
 		model.addAttribute("allUsers", allUsers);
 		return "adminDashboard.jsp";
+
+	}
+
+	@PutMapping("/users/{id}")
+	public String admin(@PathVariable("id") Long id) {
+
+		userService.makeAdmin(id);
+		return "redirect:/admin/dashboard";
 
 	}
 

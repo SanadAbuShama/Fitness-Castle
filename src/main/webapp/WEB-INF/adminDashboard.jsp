@@ -27,12 +27,13 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a>
-					<sec:authorize access="hasRole('ADMIN')">
+						<sec:authorize access="hasRole('ADMIN')">
 							<li class="nav-item"><a class="nav-link"
-							href="/admin/programs/new">Add Program</a></li>
-					</sec:authorize>
+								href="/admin/programs/new">Add Program</a></li>
+						</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
-					<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About
+							Us</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 					<li class="my-2"><a href="/users/${loggedUser.id}"
@@ -59,6 +60,7 @@
 							<th scope="col">Email</th>
 							<th scope="col">Role</th>
 							<th scope="col">Actions</th>
+							<th scope="col">Make Admin</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -80,7 +82,15 @@
 										<a href="/users/${user.id}/edit"
 											class="btn btn-sm btn-success">Edit</a>
 									</c:if></td>
+								<td><c:if test='${user.roles.get(0).name == "ROLE_USER"}'>
 
+										<form method="POST" action="/users/${user.id}">
+											<input type="hidden" name="_method" value="put"> <input
+												type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" /> <input type="submit"
+												class="btn btn-sm btn-primary me-2" value="Make Admin" />
+										</form>
+									</c:if></td>
 
 
 							</tr>

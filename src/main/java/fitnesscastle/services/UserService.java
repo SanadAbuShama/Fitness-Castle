@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fitnesscastle.models.Program;
+import fitnesscastle.models.Role;
 import fitnesscastle.models.User;
 import fitnesscastle.repositories.RoleRepository;
 import fitnesscastle.repositories.UserRepository;
@@ -87,4 +88,12 @@ public class UserService {
 		return userRepository.findAll();
 
 	}
+
+	public void makeAdmin(Long id) {
+		User user = this.findUserById(id);
+		List<Role> adminRole = roleRepository.findByName("ROLE_ADMIN");
+		user.setRoles(adminRole);
+		userRepository.save(user);
+	}
+
 }
