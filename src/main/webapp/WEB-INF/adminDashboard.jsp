@@ -55,6 +55,7 @@
 							<th scope="col">First Name</th>
 							<th scope="col">Last Name</th>
 							<th scope="col">Email</th>
+							<th scope="col">Role</th>
 							<th scope="col">Actions</th>
 						</tr>
 					</thead>
@@ -64,8 +65,22 @@
 								<td><c:out value="${user.firstName}" /></td>
 								<td><c:out value="${user.lastName}" /></td>
 								<td><c:out value="${user.email}" /></td>
-								<td><a href="/users/${user.id}/edit"
-									class="btn btn-sm btn-success">Edit</a></td>
+								<td><c:choose>
+										<c:when test='${user.roles.get(0).name == "ROLE_ADMIN"}'>
+											Admin
+										</c:when>
+										<c:otherwise>
+											Normal
+										</c:otherwise>
+									</c:choose></td>
+								<td><c:if
+										test='${user.roles.get(0).name == "ROLE_USER" || user.id == loggedUser.id}'>
+										<a href="/users/${user.id}/edit"
+											class="btn btn-sm btn-success">Edit</a>
+									</c:if></td>
+
+
+
 							</tr>
 						</c:forEach>
 					</tbody>
