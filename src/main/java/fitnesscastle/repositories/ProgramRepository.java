@@ -14,5 +14,6 @@ import fitnesscastle.models.Program;
 public interface ProgramRepository extends CrudRepository<Program, Long> {
 	List<Program> findAll();
 
-	
+	Optional<Program> findById(Long id);
+
 }

@@ -12,15 +12,12 @@ import fitnesscastle.repositories.ProgramRepository;
 
 @Service
 public class ProgramService {
-	
-
 
 	@Autowired
 	private ProgramRepository programRepo;
 
 	@Autowired
 	private UserService userServ;
-
 
 	public void createProgram(String userEmail, Program newProgram, String imageUrl) {
 		User user = userServ.findByEmail(userEmail);
@@ -42,9 +39,9 @@ public class ProgramService {
 	public List<Program> allPrograms() {
 		return programRepo.findAll();
 	}
-	
+
 	public Program updateprog(Program program, String image) {
-		Program prog1 =this.findProgramById(program.getId());
+		Program prog1 = this.findProgramById(program.getId());
 		assert prog1 != null;
 		prog1.setName(program.getName());
 		prog1.setDescription(program.getDescription());
@@ -67,10 +64,11 @@ public class ProgramService {
 
 		return programRepo.save(prog1);
 	}
-	public void delete(Long id) {
-        Program delete = programRepo.findById(id).orElse(null); 
-        programRepo.delete(delete);
-      }
 
+	public void deleteProgam(Long id) {
+		Program program = this.findProgramById(id);
+		programRepo.delete(program);
+
+	}
 
 }

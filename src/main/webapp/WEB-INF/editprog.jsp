@@ -25,15 +25,17 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a> </li>
+					<li class="nav-item"><a class="nav-link" href="/programs">Programs</a>
+					</li>
 					<sec:authorize access="hasRole('ADMIN')">
 						<li class="nav-item"><a class="nav-link"
 							href="/admin/dashboard">Admin dashboard</a></li>
-							<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link"
 							href="/admin/programs/new">Add Program</a></li>
 					</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
-					<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About
+							Us</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 					<li class="my-2"><form id="logoutForm" method="POST"
@@ -61,7 +63,7 @@
 					<div class="col text-start">
 						<form:form action="/admin/${program.id}/edit" method="POST"
 							modelAttribute="program" enctype="multipart/form-data">
-                            <input type="hidden" name="_method" value="put">
+							<input type="hidden" name="_method" value="put">
 
 							<div class="row">
 								<div class="col-md-6 col-12">
@@ -146,11 +148,12 @@
 							</div>
 							<button type="submit" class="btn btn-dark float-end ms-2">Update</button>
 							<a href="/admin/dashboard" class="btn btn-danger float-end">Cancel</a>
-																<form:form action="/programs/${program.id}/delete" method="post">
-								      	<input type="hidden" name="_method" value="delete">
-								      	<button type="submit" class="btn btn-info ">Delete program</button></form:form>							
 						</form:form>
-						
+						<form:form action="/programs/${program.id}/delete" method="post">
+							<input type="hidden" name="_method" value="delete">
+							<button type="submit" class="btn btn-info ">Delete
+								program</button>
+						</form:form>
 					</div>
 
 				</div>

@@ -196,8 +196,6 @@ public class User {
 		this.bmi = bmi;
 	}
 
-	
-	
 	public String getImage() {
 		return image;
 	}
@@ -231,5 +229,5 @@ public class User {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-	
+
 }

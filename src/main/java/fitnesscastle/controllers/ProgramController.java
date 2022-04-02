@@ -31,7 +31,6 @@ public class ProgramController {
 
 	@Autowired
 	private ProgramService programServ;
-	
 
 	@Autowired
 	private CloudinaryService cloudinaryService;
@@ -111,9 +110,10 @@ public class ProgramController {
 			model.addAttribute("loggedUser", loggedUser);
 		}
 
-		return "aboutus.jsp";	
+		return "aboutus.jsp";
 
 	}
+
 	@GetMapping("/admin/{programsid}/edit")
 	public String editprog(@PathVariable("programsid") Long id, Principal principal, Model model,
 			HttpServletRequest request) {
@@ -128,8 +128,8 @@ public class ProgramController {
 			return "redirect/";
 		}
 
-
 	}
+
 	@PutMapping("/admin/{id}/edit")
 	public String update(@RequestParam("file") MultipartFile file, @Valid @ModelAttribute("prog") Program program,
 			BindingResult result, @PathVariable("id") Long id, Model model) {
@@ -146,9 +146,9 @@ public class ProgramController {
 	}
 
 	@DeleteMapping("/programs/{id}/delete")
-    public String destroy(@PathVariable("id") Long id) {
-		programServ.delete(id);
-        return "redirect:/admin/dashboard";
-    }
+	public String destroy(@PathVariable("id") Long id) {
+		programServ.deleteProgam(id);
+		return "redirect:/admin/dashboard";
+	}
 
 }
