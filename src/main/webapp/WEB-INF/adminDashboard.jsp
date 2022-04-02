@@ -108,7 +108,7 @@
 								<td><fmt:formatNumber value="${program.minBmi}"
 										maxFractionDigits="1" /> - <fmt:formatNumber
 										value="${program.maxBmi}" maxFractionDigits="1" /></td>
-								<td><a href="/admin/programs/${program.id}/edit"
+								<td><a href="/admin/${program.id}/edit"
 									class="btn btn-sm btn-success">Edit</a></td>
 							</tr>
 						</c:forEach>

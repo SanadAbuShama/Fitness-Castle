@@ -120,6 +120,8 @@ public class ProgramController {
 		if (loggedUser.getId() == id || request.isUserInRole("ROLE_ADMIN")) {
 			Program thisprog = programServ.findProgramById(id);
 			model.addAttribute("program", thisprog);
+			model.addAttribute("loggedUser", loggedUser);
+
 			return "editprog.jsp";
 		} else {
 			return "redirect/";

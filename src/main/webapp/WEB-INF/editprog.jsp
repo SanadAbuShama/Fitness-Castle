@@ -54,7 +54,7 @@
 			<div class="col-xl-8 col-md-10 offset-xl-2 offset-md-1 col">
 				<div class="row mb-5">
 					<div class="col">
-						<h3>Create a program</h3>
+						<h3>Edit a program</h3>
 					</div>
 					<div class="col text-end">
 						<a href="/programs" class="btn btn-dark">Back to programs</a>
