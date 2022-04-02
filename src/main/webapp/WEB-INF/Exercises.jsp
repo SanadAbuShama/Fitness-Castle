@@ -39,13 +39,6 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" href="/programs">Programs</a> </li>
-							
-							<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
-						<sec:authorize access="hasRole('ADMIN')">
-							<li class="nav-item"><a class="nav-link"
-							href="/admin/dashboard">Admin dashboard</a></li>
-						</sec:authorize>
 							<li class="nav-item"><a class="nav-link active"
 								aria-current="page" href="#Biceps">Biceps & forearms</a></li>
 							<li class="nav-item"><a class="nav-link active"
@@ -61,8 +54,21 @@
 
 							<li class="nav-item"><a class="nav-link active"
 								href="#Cardio">Cardio</a></li>
+							<li class="nav-item"><a class="nav-link active"
+								href="#Abs">Abs</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									href="#hou">House Workout</a></li>
+	
 						</ul>
-						<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+						<ul class="navbar-nav  mb-lg-0 ms-auto">
+							<li class="nav-item mt-2"><a class="nav-link" href="/programs">Programs</a> </li>
+							
+							<li class="nav-item mt-2"><a class="nav-link" href="/aboutus">About Us</a></li>
+						<sec:authorize access="hasRole('ADMIN')">
+							<li class="nav-item mt-2"><a class="nav-link"
+							href="/admin/dashboard">Admin dashboard</a></li>
+						</sec:authorize>
+
 							<li class="my-2"><a href="/users/${loggedUser.id}"
 								class="btn btn-outline-light me-2">Profile</a></li>
 
@@ -77,10 +83,8 @@
 					</div>
 				</div>
 			</nav>
-
 			<section id="Biceps" class="portfolio">
 				<div class="container">
-
 					<div class="section-title">
 						<h2>Bicebs & Forearm</h2>
 					</div>
@@ -471,6 +475,99 @@
 					</div>
 				</div>
 			</section>
+
+			
+			<section id="Abs" class="chest">
+				<div class="container">
+
+					<div class="section-title">
+						<h2>Abs</h2>
+					</div>
+
+
+					<div class="row chest-container">
+
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/abs1.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/abs2.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/abs4.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/abs3.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/abs5.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/abs6.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</section>
+			<section id="hou" class="chest">
+				<div class="container">
+
+					<div class="section-title">
+						<h2>Abs</h2>
+					</div>
+
+
+					<div class="row chest-container">
+
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/hou1.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/hou2.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/hou3.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/hou4.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/hou5.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 ">
+							<div class="chest">
+								<img src="/images/hou6.gif" class="img-fluid" alt="">
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</section>
+
 			<!-- End Portfolio Section -->
 
 		</div>
