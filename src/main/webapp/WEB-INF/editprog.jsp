@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/newProgram.css">
 <meta charset="ISO-8859-1">
-<title>Add a program</title>
+<title>Edit a program</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">

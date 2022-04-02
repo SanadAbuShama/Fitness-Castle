@@ -213,7 +213,6 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-
 								<div class="col text-end">
 									<form action="/programs/${program.id}/subscribe" method="post">
 										<input type="hidden" name="_method" value="put"> <input
