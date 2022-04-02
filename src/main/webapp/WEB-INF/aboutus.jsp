@@ -30,9 +30,9 @@
 					<sec:authorize access="hasRole('ADMIN')">
 						<li class="nav-item"><a class="nav-link"
 							href="/admin/dashboard">Admin dashboard</a></li>
-							<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link"
 							href="/admin/programs/new">Add Program</a></li>
-							<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
+						<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
 					</sec:authorize>
 				</ul>
 				<c:choose>
@@ -121,7 +121,7 @@
 									<li class="list-group-item bg-dark text-white-50">Full
 										Stack Developer</li>
 									<li class="list-group-item bg-dark text-white-50"><a
-										href="mailto:mahmoud_alessa@yahoo.com" class="text-white-50">Hassanodeh1997@gmail.com</a>
+										href="mailto:Hassanodeh1997@gmail.com" class="text-white-50">Hassanodeh1997@gmail.com</a>
 									</li>
 									<li class="list-group-item bg-dark text-white-50">
 										<div class="row">
