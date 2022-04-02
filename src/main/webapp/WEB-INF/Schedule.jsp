@@ -44,31 +44,43 @@
 <body>
 	<div class="background">
 		<div class="blur">
-			<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="/programs"> <img class="logo"
-						src="/images/Logo.png" alt="">
-					</a>
-					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse" data-bs-target="#navbarNav"
-						aria-controls="navbarNav" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" href="/programs">Programs</a> </li>
-							<li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
-						</ul>
-						<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-							<li class="my-2"><a href="/logout"
-								class="btn btn-outline-light me-2">Logout</a></li>
-							<li class="my-2"><a href=""
-								class="btn btn-outline-light me-2">Profile</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/programs"> <img class="logo"
+				src="/images/logo.png" alt="" width="50" height="35" />
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+
+					<sec:authorize access="hasRole('ADMIN')">
+						<li class="nav-item"><a class="nav-link"
+							href="/admin/dashboard">Admin dashboard</a></li>
+					</sec:authorize>
+					<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
+					<li class="nav-item"><a class="nav-link" href="/aboutus">About
+							Us</a></li>
+
+				</ul>
+				<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+					<li class="my-2"><a href="/users/${loggedUser.id}"
+						class="btn btn-outline-light me-2">Profile</a></li>
+					<li class="my-2">
+						<form id="logoutForm" method="POST" action="/logout">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" /> <input type="submit"
+								class="btn btn-outline-light me-2" value="Logout" />
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 			<main class="container-sm mt-5 p-5">
 				<div class="row mb-5">
 					<div class="col text-light">

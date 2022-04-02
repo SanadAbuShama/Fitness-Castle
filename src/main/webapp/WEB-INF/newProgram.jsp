@@ -30,6 +30,7 @@
 						<li class="nav-item"><a class="nav-link"
 							href="/admin/dashboard">Admin dashboard</a></li>
 					</sec:authorize>
+					<li class="nav-item"><a class="nav-link" href="/exercises">Exercises</a></li>
 					<li class="nav-item"><a class="nav-link" href="/aboutus">About
 							Us</a></li>
 
