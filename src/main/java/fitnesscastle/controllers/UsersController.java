@@ -54,7 +54,7 @@ public class UsersController {
 		if (!file.isEmpty()) {
 			url = cloudinaryService.uploadFile(file);
 		}
-		userService.saveUserWithAdminRole(user, url);
+		userService.saveWithUserRole(user, url);
 		ra.addFlashAttribute("registerSuccess", "Registration successful! Login in below!");
 		return "redirect:/login";
 	}
