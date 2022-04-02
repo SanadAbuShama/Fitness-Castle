@@ -126,12 +126,13 @@
 									<li class="list-group-item bg-dark text-white-50">
 										<div class="row">
 											<div class="col mt-2">
-												<a target="_blank" href="https://github.com/m0H-alessa/"
+												<a target="_blank" href="https://github.com/Hassano1696"
 													class="card-link btn btn-outline-light float-end float-md-none">Github</a>
 											</div>
 											<div class="col mt-2">
 												<a target="_blank"
-													href="https://www.linkedin.com/in/mahmoud-al-essa/"
+													href="https://www.linkedin.com/in/hassan-odeh-388072229
+"
 													class="card-link btn btn-outline-light">LinkedIn</a>
 											</div>
 										</div>
