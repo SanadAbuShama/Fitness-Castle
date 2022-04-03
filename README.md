@@ -22,11 +22,6 @@ Technologies for the whole website:
 ### Screenshots from website: 
 - Registration page
 
-/register.png
+![] register.png
 
-- Login Page
-(log.PNG)
 
-- Main Page
-
-(main.PNG)
