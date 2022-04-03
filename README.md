@@ -22,6 +22,6 @@ Technologies for the whole website:
 ### Screenshots from website: 
 - Registration page
 
-![] (https://github.com/rafat-darawshe/Fitness-Castle/blob/master/register.PNG)
+![alt text] (https://github.com/rafat-darawshe/Fitness-Castle/blob/master/register.PNG)
 
 
