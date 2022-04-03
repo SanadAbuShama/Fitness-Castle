@@ -22,6 +22,6 @@ Technologies for the whole website:
 ### Screenshots from website: 
 - Registration page
 
-![] register.png
+![] (register.png)
 
 
