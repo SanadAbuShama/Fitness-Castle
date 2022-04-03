@@ -19,4 +19,5 @@ Technologies for the whole website:
 - the website contains exersices page that will show the user the main exersices to target a certain body part.
 - both users and admins can add a profile picture while registering, admins can add a picture to program while it's being created.
 
+### Screenshots from website: 
 ![Screenshot](bi4.jpg)
