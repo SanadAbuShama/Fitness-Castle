@@ -20,6 +20,7 @@ Technologies for the whole website:
 - both users and admins can add a profile picture while registering, admins can add a picture to program while it's being created.
 
 ### Screenshots from website: 
-![alt text] (https://github.com/rafat-darawshe/Fitness-Castle/blob/master/register.PNG)
+![Screenshot](log.PNG)
+
 
 
